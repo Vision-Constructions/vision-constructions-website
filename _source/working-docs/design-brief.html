@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vision — Pick Your Website Design</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #F0F0F0; -webkit-font-smoothing: antialiased; }
+
+    /* ── PAGE HEADER ── */
+    .header {
+      background: #fff;
+      border-bottom: 1px solid #E0E0E0;
+      padding: 32px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header-logo {
+      /* Replace src with actual logo file once added to folder */
+      /* <img src="logo.png" height="48"> */
+      display: flex; align-items: center; gap: 12px;
+    }
+    .logo-eye {
+      width: 48px; height: 48px;
+    }
+    .logo-words { display: flex; flex-direction: column; line-height: 1; }
+    .logo-words .v { font-size: 26px; font-weight: 900; color: #58585A; letter-spacing: 0.05em; }
+    .logo-words .s { font-size: 8px; font-weight: 600; color: #aaa; letter-spacing: 0.22em; text-transform: uppercase; margin-top: 4px; }
+
+    .header-right { text-align: right; }
+    .header-right h1 { font-size: 20px; font-weight: 800; color: #222; }
+    .header-right p  { font-size: 14px; color: #999; margin-top: 4px; }
+
+    /* ── INSTRUCTION BAR ── */
+    .instruction {
+      background: #4CB848;
+      padding: 18px 48px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .instruction .num {
+      background: rgba(255,255,255,0.25);
+      color: #fff; font-size: 13px; font-weight: 800;
+      width: 28px; height: 28px; border-radius: 50%;
+      display: grid; place-items: center; flex-shrink: 0;
+    }
+    .instruction p { font-size: 15px; font-weight: 600; color: #fff; }
+    .instruction .arrow { font-size: 22px; color: rgba(255,255,255,0.6); margin-left: auto; }
+
+    /* ── OPTIONS GRID ── */
+    .options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      padding: 32px 48px 48px;
+    }
+
+    .option-card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+      border: 3px solid transparent;
+      transition: border-color 0.2s, transform 0.2s;
+      cursor: default;
+    }
+    .option-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    }
+
+    /* Option label at top */
+    .option-label {
+      display: flex; align-items: center; gap: 12px;
+      padding: 18px 24px;
+      border-bottom: 1px solid #F0F0F0;
+    }
+    .option-letter {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: #4CB848; color: #fff;
+      font-size: 18px; font-weight: 900;
+      display: grid; place-items: center; flex-shrink: 0;
+    }
+    .option-label h2 { font-size: 16px; font-weight: 800; color: #222; }
+    .option-label p  { font-size: 12px; color: #aaa; margin-top: 2px; }
+
+    /* Preview area */
+    .preview { position: relative; }
+
+    /* ── OPTION A PREVIEW: Dark ── */
+    .prev-a { background: #1C1C1E; padding: 32px 28px 28px; min-height: 360px; }
+    .prev-a .p-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 40px;
+    }
+    .prev-a .p-logo { font-size: 14px; font-weight: 900; color: #fff; letter-spacing: 0.06em; }
+    .prev-a .p-nav-links { display: flex; gap: 14px; }
+    .prev-a .p-nav-links span { font-size: 10px; color: rgba(255,255,255,0.4); }
+    .prev-a .p-nav-cta { background: #4CB848; color: #fff; font-size: 10px; font-weight: 700; padding: 5px 12px; border-radius: 3px; }
+    .prev-a .p-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #4CB848; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+    .prev-a .p-tag::before { content: ''; display: block; width: 20px; height: 1.5px; background: #4CB848; }
+    .prev-a h1 { font-size: 34px; font-weight: 900; color: #fff; line-height: 1.08; letter-spacing: -0.025em; margin-bottom: 16px; }
+    .prev-a h1 em { color: #4CB848; font-style: normal; }
+    .prev-a p { font-size: 11.5px; color: rgba(255,255,255,0.42); line-height: 1.65; margin-bottom: 24px; max-width: 280px; }
+    .prev-a .p-btns { display: flex; gap: 10px; align-items: center; }
+    .prev-a .p-btn1 { background: #4CB848; color: #fff; font-size: 11px; font-weight: 700; padding: 9px 18px; border-radius: 3px; }
+    .prev-a .p-btn2 { font-size: 11px; color: rgba(255,255,255,0.4); }
+    .prev-a .p-stats {
+      margin-top: 28px;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border-top: 2px solid #4CB848;
+      padding-top: 20px; gap: 8px;
+    }
+    .prev-a .p-stat .n { font-size: 20px; font-weight: 900; color: #4CB848; }
+    .prev-a .p-stat .l { font-size: 9px; color: rgba(255,255,255,0.3); margin-top: 2px; }
+
+    /* ── OPTION B PREVIEW: Light ── */
+    .prev-b { background: #fff; padding: 32px 28px 28px; min-height: 360px; border-left: 4px solid #4CB848; }
+    .prev-b .p-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 32px; padding-bottom: 16px; border-bottom: 1px solid #F0F0F0;
+    }
+    .prev-b .p-logo { font-size: 14px; font-weight: 900; color: #58585A; letter-spacing: 0.06em; }
+    .prev-b .p-nav-links { display: flex; gap: 14px; }
+    .prev-b .p-nav-links span { font-size: 10px; color: #aaa; }
+    .prev-b .p-nav-cta { background: #4CB848; color: #fff; font-size: 10px; font-weight: 700; padding: 5px 12px; border-radius: 3px; }
+    .prev-b .p-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #4CB848; margin-bottom: 12px; }
+    .prev-b h1 { font-size: 30px; font-weight: 900; color: #58585A; line-height: 1.1; letter-spacing: -0.025em; margin-bottom: 14px; }
+    .prev-b p { font-size: 11.5px; color: #aaa; line-height: 1.65; margin-bottom: 22px; max-width: 260px; }
+    .prev-b .p-btns { display: flex; gap: 10px; }
+    .prev-b .p-btn1 { background: #4CB848; color: #fff; font-size: 11px; font-weight: 700; padding: 9px 18px; border-radius: 3px; }
+    .prev-b .p-btn2 { color: #58585A; font-size: 11px; font-weight: 600; padding: 9px 18px; border-radius: 3px; border: 1.5px solid #ddd; }
+    .prev-b .p-creds {
+      margin-top: 24px; display: flex; flex-direction: column; gap: 8px;
+    }
+    .prev-b .p-cred {
+      background: #FAFAFA; border: 1px solid #EBEBEB; border-left: 3px solid #4CB848;
+      padding: 10px 14px; border-radius: 3px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .prev-b .p-cred .n { font-size: 18px; font-weight: 900; color: #58585A; }
+    .prev-b .p-cred .l { font-size: 10px; color: #bbb; }
+
+    /* ── OPTION C PREVIEW: Split ── */
+    .prev-c { display: grid; grid-template-columns: 1fr 1fr; min-height: 360px; }
+    .prev-c-left { background: #1C1C1E; padding: 32px 24px; }
+    .prev-c-right { background: #4CB848; padding: 0; }
+    .prev-c .p-nav-left {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 32px;
+    }
+    .prev-c .p-logo { font-size: 13px; font-weight: 900; color: #fff; letter-spacing: 0.06em; }
+    .prev-c .p-nav-cta { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.6); font-size: 9px; font-weight: 700; padding: 5px 10px; border-radius: 3px; }
+    .prev-c h1 { font-size: 28px; font-weight: 900; color: #fff; line-height: 1.1; letter-spacing: -0.025em; margin-bottom: 12px; }
+    .prev-c h1 em { color: #4CB848; font-style: normal; }
+    .prev-c p { font-size: 11px; color: rgba(255,255,255,0.42); line-height: 1.6; margin-bottom: 20px; }
+    .prev-c .p-btn1 { background: #4CB848; color: #fff; font-size: 10px; font-weight: 700; padding: 8px 16px; border-radius: 3px; display: inline-block; }
+    .prev-c-services {
+      display: grid; grid-template-columns: 1fr 1fr;
+      height: 100%; gap: 1px; background: rgba(255,255,255,0.2);
+    }
+    .prev-c-svc {
+      background: #4CB848; padding: 20px 18px;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .prev-c-svc .icon { font-size: 18px; }
+    .prev-c-svc h4 { font-size: 11px; font-weight: 700; color: #fff; }
+    .prev-c-svc p { font-size: 10px; color: rgba(255,255,255,0.65); line-height: 1.4; }
+
+    /* ── OPTION FOOTER ── */
+    .option-footer {
+      padding: 18px 24px;
+      background: #FAFAFA;
+      border-top: 1px solid #F0F0F0;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .option-footer .vibe { font-size: 12px; color: #888; }
+    .option-footer .vibe strong { color: #333; font-weight: 700; }
+    .pick-badge {
+      font-size: 11px; font-weight: 700; color: #4CB848;
+      background: rgba(76,184,72,0.1);
+      padding: 5px 12px; border-radius: 4px;
+    }
+
+    /* ── BOTTOM NOTE ── */
+    .bottom {
+      background: #fff;
+      border-top: 1px solid #E0E0E0;
+      padding: 32px 48px;
+      display: flex; align-items: center; gap: 40px;
+    }
+    .bottom-step { display: flex; align-items: flex-start; gap: 12px; }
+    .bottom-step .n {
+      width: 28px; height: 28px; background: #4CB848; color: #fff;
+      font-size: 13px; font-weight: 800; border-radius: 50%;
+      display: grid; place-items: center; flex-shrink: 0; margin-top: 2px;
+    }
+    .bottom-step h4 { font-size: 13px; font-weight: 700; color: #222; }
+    .bottom-step p  { font-size: 12px; color: #aaa; margin-top: 2px; line-height: 1.5; }
+    .bottom-divider { width: 1px; height: 48px; background: #E8E8E8; flex-shrink: 0; }
+
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-logo">
+    <!-- Vision Logo SVG (approximation — replace with actual file) -->
+    <svg class="logo-eye" viewBox="0 0 60 60" fill="none">
+      <!-- Eye/lens mark -->
+      <path d="M30 5 C12 5, 3 30, 3 30 C3 30, 12 55, 30 55 C48 55, 57 30, 57 30 C57 30, 48 5, 30 5Z" fill="none"/>
+      <path d="M8 12 C8 12, 22 25, 30 30 C38 35, 48 50, 48 50" fill="#4CB848" opacity="0.85"/>
+      <path d="M52 48 C52 48, 38 35, 30 30 C22 25, 12 10, 12 10" fill="#4CB848" opacity="0.85"/>
+      <circle cx="30" cy="30" r="11" stroke="#58585A" stroke-width="5" fill="none"/>
+    </svg>
+    <div class="logo-words">
+      <span class="v">VISION</span>
+      <span class="s">Constructions QLD Pty Ltd</span>
+    </div>
+  </div>
+  <div class="header-right">
+    <h1>New Website — Design Options</h1>
+    <p>Look at A, B and C below — let us know which one you prefer</p>
+  </div>
+</div>
+
+<!-- INSTRUCTION -->
+<div class="instruction">
+  <div class="num">1</div>
+  <p>Look at the three options below &nbsp;→&nbsp; Tell us which design feels most like Vision</p>
+  <div class="arrow">↓</div>
+</div>
+
+<!-- OPTIONS -->
+<div class="options">
+
+  <!-- OPTION A -->
+  <div class="option-card">
+    <div class="option-label">
+      <div class="option-letter">A</div>
+      <div>
+        <h2>Dark &amp; Bold</h2>
+        <p>Dark background, white text, green highlights</p>
+      </div>
+    </div>
+    <div class="preview">
+      <div class="prev-a">
+        <div class="p-nav">
+          <div class="p-logo">VISION</div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div class="p-nav-links">
+              <span>Services</span><span>Projects</span><span>About</span>
+            </div>
+            <div class="p-nav-cta">Get in Touch</div>
+          </div>
+        </div>
+        <div class="p-tag">Queensland · Government &amp; Infrastructure</div>
+        <h1>We Build.<br>We Maintain.<br><em>We Deliver.</em></h1>
+        <p>Vision Constructions provides maintenance, shutdowns, and civil construction for Queensland's government and infrastructure sector.</p>
+        <div class="p-btns">
+          <div class="p-btn1">Our Services</div>
+          <div class="p-btn2">View Projects →</div>
+        </div>
+        <div class="p-stats">
+          <div class="p-stat"><div class="n">10+</div><div class="l">Years</div></div>
+          <div class="p-stat"><div class="n">50+</div><div class="l">Projects</div></div>
+          <div class="p-stat"><div class="n">QLD</div><div class="l">Based</div></div>
+          <div class="p-stat"><div class="n">100%</div><div class="l">Safety</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="option-footer">
+      <div class="vibe">Feel: <strong>Strong &amp; authoritative</strong></div>
+      <div class="pick-badge">Similar to Champ Group</div>
+    </div>
+  </div>
+
+  <!-- OPTION B -->
+  <div class="option-card">
+    <div class="option-label">
+      <div class="option-letter">B</div>
+      <div>
+        <h2>Clean &amp; Professional</h2>
+        <p>White background, clean layout, green accents</p>
+      </div>
+    </div>
+    <div class="preview">
+      <div class="prev-b">
+        <div class="p-nav">
+          <div class="p-logo">VISION</div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div class="p-nav-links">
+              <span>Services</span><span>Projects</span><span>About</span>
+            </div>
+            <div class="p-nav-cta">Get in Touch</div>
+          </div>
+        </div>
+        <div class="p-tag">Queensland · Construction &amp; Maintenance</div>
+        <h1>Trusted Partners<br>in Construction<br>&amp; Maintenance</h1>
+        <p>Safe, reliable outcomes for government and infrastructure clients across Queensland.</p>
+        <div class="p-btns">
+          <div class="p-btn1">Our Services</div>
+          <div class="p-btn2">See Our Work</div>
+        </div>
+        <div class="p-creds">
+          <div class="p-cred"><div class="n">10+</div><div class="l">Years of quality outcomes</div></div>
+          <div class="p-cred"><div class="n">50+</div><div class="l">Projects completed on time</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="option-footer">
+      <div class="vibe">Feel: <strong>Corporate &amp; trustworthy</strong></div>
+      <div class="pick-badge">Government-ready</div>
+    </div>
+  </div>
+
+  <!-- OPTION C -->
+  <div class="option-card">
+    <div class="option-label">
+      <div class="option-letter">C</div>
+      <div>
+        <h2>Split — Dark &amp; Green</h2>
+        <p>Half dark, half green — bold and modern</p>
+      </div>
+    </div>
+    <div class="preview">
+      <div class="prev-c">
+        <div class="prev-c-left">
+          <div class="p-nav-left">
+            <div class="p-logo">VISION</div>
+            <div class="p-nav-cta">Get in Touch</div>
+          </div>
+          <h1>Delivering<br>Infrastructure.<br><em>Maintaining</em><br>Standards.</h1>
+          <p>Expert maintenance, shutdowns, and civil construction for Queensland government clients.</p>
+          <div class="p-btn1">Our Services</div>
+        </div>
+        <div class="prev-c-right">
+          <div class="prev-c-services">
+            <div class="prev-c-svc">
+              <div class="icon">🔧</div>
+              <h4>Maintenance &amp; Shutdowns</h4>
+              <p>Planned programs</p>
+            </div>
+            <div class="prev-c-svc">
+              <div class="icon">🏗️</div>
+              <h4>Civil Construction</h4>
+              <p>Concrete &amp; civil works</p>
+            </div>
+            <div class="prev-c-svc">
+              <div class="icon">📋</div>
+              <h4>Project Management</h4>
+              <p>End-to-end delivery</p>
+            </div>
+            <div class="prev-c-svc">
+              <div class="icon">🏢</div>
+              <h4>Site Services</h4>
+              <p>Full-scope works</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="option-footer">
+      <div class="vibe">Feel: <strong>Modern &amp; distinctive</strong></div>
+      <div class="pick-badge">No photos needed</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- BOTTOM STEPS -->
+<div class="bottom">
+  <div class="bottom-step">
+    <div class="n">1</div>
+    <div>
+      <h4>Pick A, B or C</h4>
+      <p>Tell us which design feels most like Vision.<br>You can mix elements from different options.</p>
+    </div>
+  </div>
+  <div class="bottom-divider"></div>
+  <div class="bottom-step">
+    <div class="n">2</div>
+    <div>
+      <h4>Share Your Content</h4>
+      <p>Send the capability statement &amp; project sheets.<br>We write all the copy — you just review it.</p>
+    </div>
+  </div>
+  <div class="bottom-divider"></div>
+  <div class="bottom-step">
+    <div class="n">3</div>
+    <div>
+      <h4>We Build &amp; Launch</h4>
+      <p>Full 5-page site built, reviewed, then live.<br>Domain kept. Wix cancelled.</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

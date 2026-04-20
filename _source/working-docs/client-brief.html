@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vision Constructions — Website Brief</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #4DB848;
+      --green-light: #E8F7E7;
+      --dark: #1A1A1A;
+      --grey: #6B6B6B;
+      --border: #E4E4E4;
+      --bg: #F7F7F7;
+      --white: #FFFFFF;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+
+    /* ── HEADER ─────────────────────────── */
+    .doc-header {
+      background: var(--dark);
+      padding: 40px 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .doc-header-left h1 {
+      font-size: 1.05rem; font-weight: 700; color: #fff; letter-spacing: 0.05em;
+      text-transform: uppercase; margin-bottom: 4px;
+    }
+    .doc-header-left p { font-size: 0.85rem; color: rgba(255,255,255,0.45); }
+    .doc-badge {
+      background: var(--green); color: #fff;
+      padding: 8px 20px; border-radius: 100px;
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    }
+
+    /* ── INTRO BANNER ────────────────────── */
+    .intro-banner {
+      background: var(--green-light);
+      border-bottom: 2px solid var(--green);
+      padding: 28px 64px;
+      display: flex; align-items: flex-start; gap: 16px;
+    }
+    .intro-banner svg { width: 22px; height: 22px; color: var(--green); flex-shrink: 0; margin-top: 2px; }
+    .intro-banner p { font-size: 0.92rem; color: #2a6328; line-height: 1.6; }
+    .intro-banner strong { font-weight: 700; }
+
+    /* ── MAIN LAYOUT ─────────────────────── */
+    .doc-body { max-width: 900px; margin: 0 auto; padding: 48px 24px 80px; }
+
+    /* ── PROGRESS ────────────────────────── */
+    .progress-strip {
+      background: var(--white); border: 1px solid var(--border); border-radius: 14px;
+      padding: 24px 32px; margin-bottom: 40px;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    }
+    .progress-item { text-align: center; }
+    .progress-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--grey); margin-bottom: 6px; }
+    .progress-bar { height: 6px; background: #E4E4E4; border-radius: 100px; overflow: hidden; }
+    .progress-fill { height: 100%; background: var(--green); border-radius: 100px; }
+    .progress-note { font-size: 0.78rem; color: var(--grey); margin-top: 6px; }
+
+    /* ── SECTION ─────────────────────────── */
+    .section {
+      background: var(--white); border: 1px solid var(--border); border-radius: 16px;
+      margin-bottom: 24px; overflow: hidden;
+    }
+    .section-header {
+      display: flex; align-items: center; gap: 14px;
+      padding: 24px 32px; border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .section-number {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: var(--dark); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.82rem; font-weight: 800; flex-shrink: 0;
+    }
+    .section-header h2 { font-size: 1rem; font-weight: 700; color: var(--dark); }
+    .section-header p { font-size: 0.82rem; color: var(--grey); margin-top: 2px; }
+    .section-body { padding: 32px; display: flex; flex-direction: column; gap: 24px; }
+
+    /* ── QUESTION ────────────────────────── */
+    .question { display: flex; flex-direction: column; gap: 8px; }
+    .question label {
+      font-size: 0.88rem; font-weight: 600; color: var(--dark);
+      display: flex; align-items: flex-start; gap: 8px;
+    }
+    .question label .q-num {
+      font-size: 0.72rem; color: var(--green); font-weight: 700;
+      background: var(--green-light); padding: 2px 7px; border-radius: 4px;
+      white-space: nowrap; margin-top: 1px;
+    }
+    .question .hint { font-size: 0.8rem; color: var(--grey); line-height: 1.5; padding-left: 36px; }
+    .answer-field {
+      width: 100%; padding: 12px 16px;
+      border: 1.5px solid var(--border); border-radius: 10px;
+      font-family: inherit; font-size: 0.92rem; color: var(--dark);
+      background: #FAFAFA; resize: vertical; outline: none;
+      transition: border-color 0.2s;
+    }
+    .answer-field:focus { border-color: var(--green); background: #fff; }
+    .answer-field.short { min-height: unset; height: 44px; resize: none; }
+    .answer-field.medium { min-height: 80px; }
+    .answer-field.tall { min-height: 120px; }
+
+    /* Checklist */
+    .checklist { display: flex; flex-direction: column; gap: 10px; padding-left: 36px; }
+    .checklist-row { display: flex; flex-wrap: wrap; gap: 10px; }
+    .check-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.88rem; color: var(--dark); cursor: pointer;
+      padding: 8px 14px; border: 1.5px solid var(--border);
+      border-radius: 8px; background: #FAFAFA; transition: all 0.2s;
+      user-select: none;
+    }
+    .check-item input { width: 16px; height: 16px; accent-color: var(--green); cursor: pointer; flex-shrink: 0; }
+    .check-item:has(input:checked) {
+      border-color: var(--green); background: var(--green-light); color: #2a6328; font-weight: 600;
+    }
+
+    /* ── CONFIRMED BOX ───────────────────── */
+    .confirmed-box {
+      background: var(--green-light); border: 1px solid var(--green);
+      border-radius: 12px; padding: 20px 24px;
+    }
+    .confirmed-box .cb-title {
+      font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--green); margin-bottom: 14px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .confirmed-box .cb-title svg { width: 14px; height: 14px; }
+    .confirmed-list { display: flex; flex-direction: column; gap: 8px; }
+    .confirmed-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.88rem; color: #2a6328;
+    }
+    .confirmed-item svg { width: 16px; height: 16px; color: var(--green); flex-shrink: 0; margin-top: 2px; }
+    .confirmed-item strong { font-weight: 600; }
+    .confirmed-item .confirmed-val { color: var(--dark); }
+
+    /* ── DIVIDER ─────────────────────────── */
+    .q-divider { height: 1px; background: var(--border); margin: 4px 0; }
+
+    /* ── PHOTO GRID ──────────────────────── */
+    .photo-needs {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding-left: 36px;
+    }
+    .photo-need-card {
+      border: 1.5px dashed var(--border); border-radius: 10px;
+      padding: 16px; text-align: center; background: #FAFAFA;
+    }
+    .photo-need-card .pnc-icon { font-size: 1.6rem; margin-bottom: 8px; }
+    .photo-need-card h4 { font-size: 0.82rem; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+    .photo-need-card p { font-size: 0.75rem; color: var(--grey); line-height: 1.4; }
+    .photo-need-card.have { border-color: var(--green); border-style: solid; background: var(--green-light); }
+    .photo-need-card.have h4 { color: #2a6328; }
+
+    /* ── PRIORITY TAG ────────────────────── */
+    .priority { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; }
+    .priority.high { background: #FEE2E2; color: #DC2626; }
+    .priority.medium { background: #FEF3C7; color: #D97706; }
+    .priority.low { background: var(--green-light); color: #16A34A; }
+
+    /* ── FOOTER ──────────────────────────── */
+    .doc-footer {
+      background: var(--dark); padding: 32px 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .doc-footer p { font-size: 0.82rem; color: rgba(255,255,255,0.4); }
+    .doc-footer a { color: var(--green); text-decoration: none; }
+
+    /* ── PRINT ───────────────────────────── */
+    @media print {
+      body { background: #fff; }
+      .doc-header { padding: 24px 40px; }
+      .intro-banner { padding: 16px 40px; }
+      .doc-body { padding: 24px; }
+      .section { break-inside: avoid; }
+      .answer-field { background: #FAFAFA !important; }
+    }
+
+    @media (max-width: 700px) {
+      .doc-header { padding: 24px; flex-direction: column; align-items: flex-start; gap: 16px; }
+      .intro-banner { padding: 20px 24px; }
+      .doc-body { padding: 20px 16px 60px; }
+      .section-body { padding: 20px; }
+      .section-header { padding: 18px 20px; }
+      .photo-needs { grid-template-columns: 1fr 1fr; }
+      .progress-strip { grid-template-columns: 1fr; }
+      .doc-footer { padding: 24px; flex-direction: column; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="doc-header">
+  <div class="doc-header-left">
+    <h1>Vision Constructions QLD Pty Ltd</h1>
+    <p>Website Project — Client Information Brief &nbsp;·&nbsp; Prepared April 2025</p>
+  </div>
+  <div class="doc-badge">Draft v1</div>
+</div>
+
+<!-- INTRO BANNER -->
+<div class="intro-banner">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+  <p><strong>Hey — this is your website brief.</strong> We've already built the framework of the site using the information we have, but to make it truly professional and effective we need your help filling in the gaps. Work through this document and answer what you can — even rough notes are helpful. The more detail you give us, the better the site will be.</p>
+</div>
+
+<div class="doc-body">
+
+  <!-- PROGRESS -->
+  <div class="progress-strip">
+    <div class="progress-item">
+      <div class="progress-label">Overall Progress</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:55%"></div></div>
+      <div class="progress-note">~55% complete — framework done, content needed</div>
+    </div>
+    <div class="progress-item">
+      <div class="progress-label">Structure & Design</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div>
+      <div class="progress-note">7 pages built, styles complete</div>
+    </div>
+    <div class="progress-item">
+      <div class="progress-label">Real Content & Photos</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:20%"></div></div>
+      <div class="progress-note">Biggest gap — this brief addresses it</div>
+    </div>
+  </div>
+
+  <!-- ─── SECTION 1: BUSINESS INFO ─── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">1</div>
+      <div>
+        <h2>Business Information</h2>
+        <p>We have the basics — just confirm these are correct and fill in the gaps.</p>
+      </div>
+    </div>
+    <div class="section-body">
+
+      <div class="confirmed-box">
+        <div class="cb-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Already confirmed — please check and correct anything wrong
+        </div>
+        <div class="confirmed-list">
+          <div class="confirmed-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            <span><strong>Legal name:</strong> <span class="confirmed-val">Vision Constructions QLD Pty Ltd</span></span>
+          </div>
+          <div class="confirmed-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            <span><strong>ABN:</strong> <span class="confirmed-val">54 136 270 347</span></span>
+          </div>
+          <div class="confirmed-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            <span><strong>Phone:</strong> <span class="confirmed-val">(07) 4755 4839</span></span>
+          </div>
+          <div class="confirmed-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            <span><strong>Email:</strong> <span class="confirmed-val">admin@visionconstructions.com.au</span></span>
+          </div>
+          <div class="confirmed-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            <span><strong>Address:</strong> <span class="confirmed-val">95 Crocodile Crescent, Mount St John QLD 4818</span></span>
+          </div>
+          <div class="confirmed-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            <span><strong>Founded:</strong> <span class="confirmed-val">2009, Townsville QLD</span></span>
+          </div>
+          <div class="confirmed-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            <span><strong>Staff:</strong> <span class="confirmed-val">~27 direct employees</span></span>
+          </div>
+          <div class="confirmed-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            <span><strong>Website:</strong> <span class="confirmed-val">visionconstructions.com.au</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="question">
+        <label><span class="q-num">1.1</span> Is anything above incorrect? What needs to change?</label>
+        <textarea class="answer-field medium" placeholder="e.g. Staff count is now 32, not 27. Email has changed to…"></textarea>
+      </div>
+
+      <div class="question">
+        <label><span class="q-num">1.2</span> Director / Owner name(s) — for the About page and any bios <span class="priority medium">Important</span></label>
+        <textarea class="answer-field short" placeholder="e.g. John Smith — Director"></textarea>
+      </div>
+
+      <div class="question">
+        <label><span class="q-num">1.3</span> Do you have a tagline or one-liner you use? (e.g. on business cards, utes, signage)</label>
+        <textarea class="answer-field short" placeholder="e.g. 'Built for the North' or 'Where others stop, we start'…"></textarea>
+        <p class="hint">If not, we'll use: <em>"Building what matters across North Queensland since 2009"</em> — let us know if that works.</p>
+      </div>
+
+      <div class="question">
+        <label><span class="q-num">1.4</span> Office hours — are these correct? Mon–Fri 7:00 AM – 5:00 PM</label>
+        <textarea class="answer-field short" placeholder="Confirm or correct…"></textarea>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ─── SECTION 2: SERVICES ─── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">2</div>
+      <div>
+        <h2>Services &amp; Specialties</h2>
+        <p>We've listed your four core service areas — help us describe them more specifically.</p>
+      </div>
+    </div>
+    <div class="section-body">
+
+      <div class="question">
+        <label><span class="q-num">2.1</span> Are these the right four service areas? Tick all that apply and add any we've missed.</label>
+        <div class="checklist">
+          <div class="checklist-row">
+            <label class="check-item"><input type="checkbox" checked> Civil Construction</label>
+            <label class="check-item"><input type="checkbox" checked> Marine &amp; Water Infrastructure</label>
+            <label class="check-item"><input type="checkbox" checked> Infrastructure Support Services</label>
+            <label class="check-item"><input type="checkbox" checked> Structural, Mechanical &amp; Piping</label>
+          </div>
+        </div>
+        <textarea class="answer-field medium" placeholder="Any services to add, remove, or rename?"></textarea>
+      </div>
+
+      <div class="q-divider"></div>
+
+      <div class="question">
+        <label><span class="q-num">2.2</span> What are the types of work you do MOST of? (your bread and butter)</label>
+        <textarea class="answer-field medium" placeholder="e.g. Most of our work is road construction and rehabilitation for local councils, plus shutdown maintenance for the resources sector…"></textarea>
+      </div>
+
+      <div class="question">
+        <label><span class="q-num">2.3</span> What work do you WANT MORE of? (this shapes how we position the site)</label>
+        <textarea class="answer-field medium" placeholder="e.g. We'd like more resources sector work, or more government tender opportunities…"></textarea>
+      </div>
+
+      <div class="question">
+        <label><span class="q-num">2.4</span> Do you take on private/residential work, or is it strictly commercial/government/resources?</label>
+        <div class="checklist">
+          <div class="checklist-row">
+            <label class="check-item"><input type="checkbox"> Commercial only (councils, government, resources)</label>
+            <label class="check-item"><input type="checkbox"> Some private/residential</label>
+            <label class="check-item"><input type="checkbox"> No minimum — we look at everything</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="question">
+        <label><span class="q-num">2.5</span> What's your typical project value range? (helps set expectations for visitors)</label>
+        <div class="checklist">
+          <div class="checklist-row">
+            <label class="check-item"><input type="checkbox"> Under $100K</label>
+            <label class="check-item"><input type="checkbox"> $100K – $500K</label>
+            <label class="check-item"><input type="checkbox"> $500K – $2M</label>
+            <label class="check-item"><input type="checkbox"> $2M+</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="question">
+        <label><span class="q-num">2.6</span> What is the single biggest thing that makes Vision different from other civil contractors in NQ? <span class="priority high">Critical</span></label>
+        <textarea class="answer-field tall" placeholder="Be honest — what would a past client say if asked why they came back to Vision? Safety record? Local knowledge? Can-do attitude? Speed to mobilise?…"></textarea>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ─── SECTION 3: YOUR CLIENTS ─── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">3</div>
+      <div>
+        <h2>Clients &amp; Target Audience</h2>
+        <p>Understanding who you want to reach shapes every part of the website.</p>
+      </div>
+    </div>
+    <div class="section-body">
+
+      <div class="question">
+        <label><span class="q-num">3.1</span> Who are your top 5 clients (by work volume or relationship)? <span class="priority high">Critical — for social proof</span></label>
+        <p class="hint">These will appear as client logos on the homepage. They don't have to be the biggest names — the most relevant ones are best.</p>
+        <textarea class="answer-field tall" placeholder="1. _______________&#10;2. _______________&#10;3. _______________&#10;4. _______________&#10;5. _______________"></textarea>
+      </div>
+
+      <div class="question">
+        <label><span class="q-num">3.2</span> Who is the typical person visiting your website and making the call? What's their job title?</label>
+        <div class="checklist">
+          <div class="checklist-row">
+            <label class="check-item"><input type="checkbox"> Council/Government engineer or project manager</label>
+            <label class="check-item"><input type="checkbox"> Resources company operations/maintenance manager</label>
+            <label class="check-item"><input type="checkbox"> Private developer or builder</label>
+            <label class="check-item"><input type="checkbox"> Procurement/tender coordinator</label>
+            <label class="check-item"><input type="checkbox"> Other</label>
+          </div>
+        </div>
+        <textarea class="answer-field medium" placeholder="Describe who typically calls or emails you…"></textarea>
+      </div>
+
+      <div class="question">
+        <label><span class="q-num">3.3</span> When a new client contacts you for the first time, what are they usually trying to solve?</label>
+        <textarea class="answer-field medium" placeholder="e.g. They need a quote urgently because their usual contractor fell through. Or they're planning a scheduled shutdown and need a civil contractor who knows their site…"></textarea>
+      </div>
+
+      <div class="question">
+        <label><span class="q-num">3.4</span> What are the most common objections or concerns clients raise before committing?</label>
+        <textarea class="answer-field medium" placeholder="e.g. 'Are you too small to handle this?', 'Are you ISO certified?', 'Can you mobilise quickly enough?'…"></textarea>
+        <p class="hint">We'll address these directly in the FAQ and content.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ─── SECTION 4: PHOTOGRAPHY & MEDIA ─── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">4</div>
+      <div>
+        <h2>Photography &amp; Media</h2>
+        <p>This is the biggest gap right now. Photos make or break a construction website.</p>
+      </div>
+    </div>
+    <div class="section-body">
+
+      <div class="question">
+        <label><span class="q-num">4.1</span> What photos do you currently have available? <span class="priority high">Biggest priority</span></label>
+        <p class="hint">Tick everything you have access to — even phone photos are a starting point.</p>
+        <div class="checklist">
+          <div class="checklist-row">
+            <label class="check-item"><input type="checkbox"> Site/project photos (any quality)</label>
+            <label class="check-item"><input type="checkbox"> Team/crew photos</label>
+            <label class="check-item"><input type="checkbox"> Plant and equipment photos</label>
+            <label class="check-item"><input type="checkbox"> Drone/aerial footage</label>
+            <label class="check-item"><input type="checkbox"> Before &amp; after photos</label>
+            <label class="check-item"><input type="checkbox"> Safety/PPE shots</label>
+            <label class="check-item"><input type="checkbox"> High-res logo files (SVG or AI)</label>
+            <label class="check-item"><input type="checkbox"> Professional photography (any)</label>
+          </div>
+        </div>
+      </div>
+
+      <p style="font-size:0.85rem; font-weight:600; color:var(--dark); padding-left:36px; margin-top:-8px;">Photos needed for the website — status:</p>
+
+      <div class="photo-needs">
+        <div class="photo-need-card">
+          <div class="pnc-icon">🛣️</div>
+          <h4>Hero Image</h4>
+          <p>Full-width background for the homepage. Roads, earthworks, or active site. Min 1920×1080px.</p>
+        </div>
+        <div class="photo-need-card">
+          <div class="pnc-icon">🚧</div>
+          <h4>Civil Works</h4>
+          <p>Road construction, earthworks, drainage. At least 2–3 shots.</p>
+        </div>
+        <div class="photo-need-card have">
+          <div class="pnc-icon">⚓</div>
+          <h4>Marine Works ✓</h4>
+          <p>Have a low-res version. Higher quality would be better.</p>
+        </div>
+        <div class="photo-need-card have">
+          <div class="pnc-icon">🚗</div>
+          <h4>Team / Hilux ✓</h4>
+          <p>Have a low-res version. A better shot with crew would be ideal.</p>
+        </div>
+        <div class="photo-need-card">
+          <div class="pnc-icon">🏗️</div>
+          <h4>Industrial / SMP</h4>
+          <p>Structural, mechanical, or piping works. Even one good shot.</p>
+        </div>
+        <div class="photo-need-card">
+          <div class="pnc-icon">👷</div>
+          <h4>Team / Crew</h4>
+          <p>People on site. Shows you're real. Doesn't need to be professional.</p>
+        </div>
+      </div>
+
+      <div class="question" style="margin-top: 8px;">
+        <label><span class="q-num">4.2</span> Would you be open to organising a half-day photo shoot? (A local photographer for ~$500–$800 would transform the site)</label>
+        <div class="checklist">
+          <div class="checklist-row">
+            <label class="check-item"><input type="checkbox"> Yes — let's do it</label>
+            <label class="check-item"><input type="checkbox"> Maybe — how do we organise that?</label>
+            <label class="check-item"><input type="checkbox"> Not right now — use what we have</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="question">
+        <label><span class="q-num">4.3</span> Do you have a high-resolution version of the logo? (We need SVG or a PNG at least 1000px wide)</label>
+        <div class="checklist">
+          <div class="checklist-row">
+            <label class="check-item"><input type="checkbox"> Yes — I can send an SVG or AI file</label>
+            <label class="check-item"><input type="checkbox"> Only have what we've already used</label>
+            <label class="check-item"><input type="checkbox"> Not sure — I'll check with the graphic designer who made it</label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ─── SECTION 5: TESTIMONIALS ─── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">5</div>
+      <div>
+        <h2>Testimonials &amp; Social Proof</h2>
+        <p>Currently using placeholder quotes — we need real ones. Testimonials are one of the highest-converting elements on any trade website.</p>
+      </div>
+    </div>
+    <div class="section-body">
+
+      <div class="question">
+        <label><span class="q-num">5.1</span> Do you have a Google Business Profile set up? <span class="priority high">High value</span></label>
+        <div class="checklist">
+          <div class="checklist-row">
+            <label class="check-item"><input type="checkbox"> Yes — and we have reviews</label>
+            <label class="check-item"><input type="checkbox"> Yes — but no reviews yet</label>
+            <label class="check-item"><input type="checkbox"> No — I didn't know this was a thing</label>
+          </div>
+        </div>
+        <p class="hint">A Google Business Profile with reviews can drive significant enquiries. If you don't have one set up, it takes about 15 minutes and we can walk you through it.</p>
+      </div>
+
+      <div class="question">
+        <label><span class="q-num">5.2</span> Can you get 2–3 written testimonials from past clients? (Even a short email reply works)</label>
+        <p class="hint">Best approach: email or call 2–3 clients you have a good relationship with and ask "Would you be happy to write 2–3 sentences about working with us for our website?" Most people are happy to help.</p>
+        <textarea class="answer-field tall" placeholder="Paste any testimonials here, or write the client names so we can follow up:&#10;&#10;1. [Name / Company / Quote]&#10;2. [Name / Company / Quote]&#10;3. [Name / Company / Quote]"></textarea>
+      </div>
+
+      <div class="question">
+        <label><span class="q-num">5.3</span> Are you happy for us to list these client names on the website as "clients we've worked with"?</label>
+        <div class="checklist">
+          <div class="checklist-row">
+            <label class="check-item"><input type="checkbox"> Yes — all of them</label>
+            <label class="check-item"><input type="checkbox"> Some — I'll confirm which ones</label>
+            <label class="check-item"><input type="checkbox"> No — I'd rather not name clients publicly</label>
+          </div>
+        </div>
+        <textarea class="answer-field medium" placeholder="Any clients you definitely want to include or exclude?&#10;e.g. 'Yes include Glencore and Townsville City Council but not [X]'…"></textarea>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ─── SECTION 6: PROJECTS ─── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">6</div>
+      <div>
+        <h2>Projects &amp; Case Studies</h2>
+        <p>The projects page currently has 11 entries. Help us make them more specific and accurate.</p>
+      </div>
+    </div>
+    <div class="section-body">
+
+      <div class="question">
+        <label><span class="q-num">6.1</span> Are the projects listed on the website accurate? Any to add, remove, or rename?</label>
+        <p class="hint">Current projects listed: Sun Metals, Strathalbyn Gully, APLNG, Badu Island Jetty, Aurukun to Batavia Creek, Jubilee Plunger Gold Mine, NDRRA, Etheridge Shire Council, Gorge Creek, Hughenden Heli Pad, Peninsula Development Road.</p>
+        <textarea class="answer-field tall" placeholder="Corrections or additions…"></textarea>
+      </div>
+
+      <div class="question">
+        <label><span class="q-num">6.2</span> Is there a project you're most proud of that we should feature as the hero project? <span class="priority medium">Good for credibility</span></label>
+        <textarea class="answer-field medium" placeholder="Project name, brief description, what made it interesting or challenging…"></textarea>
+      </div>
+
+      <div class="question">
+        <label><span class="q-num">6.3</span> For any projects — do you have the approximate value (contract sum) you'd be willing to display?</label>
+        <div class="checklist">
+          <div class="checklist-row">
+            <label class="check-item"><input type="checkbox"> Yes — happy to show project values</label>
+            <label class="check-item"><input type="checkbox"> No — prefer not to show values</label>
+            <label class="check-item"><input type="checkbox"> On a case-by-case basis</label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ─── SECTION 7: CAREERS ─── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">7</div>
+      <div>
+        <h2>Careers</h2>
+        <p>The careers page currently lists 3 roles + an EOI. Check these are right.</p>
+      </div>
+    </div>
+    <div class="section-body">
+
+      <div class="question">
+        <label><span class="q-num">7.1</span> Are these current openings? Confirm or update.</label>
+        <div class="checklist">
+          <div class="checklist-row">
+            <label class="check-item"><input type="checkbox"> Project Administrator — ACTIVE</label>
+            <label class="check-item"><input type="checkbox"> Plant Operator — ACTIVE</label>
+            <label class="check-item"><input type="checkbox"> Civil Labourer — ACTIVE</label>
+          </div>
+        </div>
+        <textarea class="answer-field medium" placeholder="Any roles to add or remove? Any specific requirements we should change?"></textarea>
+      </div>
+
+      <div class="question">
+        <label><span class="q-num">7.2</span> Where should job applications be emailed to?</label>
+        <textarea class="answer-field short" placeholder="e.g. admin@visionconstructions.com.au or a specific HR email…"></textarea>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ─── SECTION 8: CERTIFICATIONS ─── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">8</div>
+      <div>
+        <h2>Certifications &amp; Accreditations</h2>
+        <p>Confirm what you hold — these appear on the homepage and policies page.</p>
+      </div>
+    </div>
+    <div class="section-body">
+
+      <div class="question">
+        <label><span class="q-num">8.1</span> Tick everything that's current and active</label>
+        <div class="checklist">
+          <div class="checklist-row">
+            <label class="check-item"><input type="checkbox" checked> ISO 45001 (WHS)</label>
+            <label class="check-item"><input type="checkbox" checked> ISO 14001 (Environmental)</label>
+            <label class="check-item"><input type="checkbox" checked> ISO 9001 (Quality)</label>
+            <label class="check-item"><input type="checkbox" checked> QBCC Licence</label>
+            <label class="check-item"><input type="checkbox" checked> Local Buy</label>
+            <label class="check-item"><input type="checkbox" checked> QLD Govt Prequalified</label>
+            <label class="check-item"><input type="checkbox"> MATES in Construction</label>
+            <label class="check-item"><input type="checkbox"> Other (fill below)</label>
+          </div>
+        </div>
+        <textarea class="answer-field medium" placeholder="Any certifications to add or remove?"></textarea>
+      </div>
+
+      <div class="question">
+        <label><span class="q-num">8.2</span> Do you have certification logos/badges we can display? (Usually a PDF or image from the certification body)</label>
+        <div class="checklist">
+          <div class="checklist-row">
+            <label class="check-item"><input type="checkbox"> Yes — I can send them</label>
+            <label class="check-item"><input type="checkbox"> Not sure where they are</label>
+            <label class="check-item"><input type="checkbox"> No — we'd need to get them</label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ─── SECTION 9: DESIGN & FEEL ─── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">9</div>
+      <div>
+        <h2>Design &amp; Look &amp; Feel</h2>
+        <p>The current site uses a dark theme with Vision green. Tell us what you think.</p>
+      </div>
+    </div>
+    <div class="section-body">
+
+      <div class="question">
+        <label><span class="q-num">9.1</span> Have you had a look at the current website build? What do you think overall?</label>
+        <div class="checklist">
+          <div class="checklist-row">
+            <label class="check-item"><input type="checkbox"> Love it — keep going this direction</label>
+            <label class="check-item"><input type="checkbox"> Like it with some changes</label>
+            <label class="check-item"><input type="checkbox"> Not sure — I need to see it on my phone too</label>
+            <label class="check-item"><input type="checkbox"> Want something quite different</label>
+          </div>
+        </div>
+        <textarea class="answer-field medium" placeholder="Specific feedback — what works, what doesn't, what feels wrong…"></textarea>
+      </div>
+
+      <div class="question">
+        <label><span class="q-num">9.2</span> Are there any other websites (construction, trade, or any industry) that you like the look of?</label>
+        <textarea class="answer-field medium" placeholder="Paste any URLs here — even if they're not in the same industry. Just describe what you like about them."></textarea>
+      </div>
+
+      <div class="question">
+        <label><span class="q-num">9.3</span> How do you want people to feel when they land on the website? Tick up to 3.</label>
+        <div class="checklist">
+          <div class="checklist-row">
+            <label class="check-item"><input type="checkbox"> Professional and credible</label>
+            <label class="check-item"><input type="checkbox"> Tough and capable</label>
+            <label class="check-item"><input type="checkbox"> Safe and trustworthy</label>
+            <label class="check-item"><input type="checkbox"> Local and community-focused</label>
+            <label class="check-item"><input type="checkbox"> Modern and innovative</label>
+            <label class="check-item"><input type="checkbox"> No-nonsense, straight talking</label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ─── SECTION 10: GOALS ─── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">10</div>
+      <div>
+        <h2>Goals &amp; Success</h2>
+        <p>What does the website need to achieve?</p>
+      </div>
+    </div>
+    <div class="section-body">
+
+      <div class="question">
+        <label><span class="q-num">10.1</span> What is the #1 thing you want the website to do? <span class="priority high">Most important question</span></label>
+        <div class="checklist">
+          <div class="checklist-row">
+            <label class="check-item"><input type="checkbox"> Generate quote enquiries</label>
+            <label class="check-item"><input type="checkbox"> Win government/council tender prequalification</label>
+            <label class="check-item"><input type="checkbox"> Attract and recruit staff</label>
+            <label class="check-item"><input type="checkbox"> Build credibility when prospects Google us</label>
+            <label class="check-item"><input type="checkbox"> Replace the old Wix site with something more professional</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="question">
+        <label><span class="q-num">10.2</span> In 6 months, what would make you say "the website has been worth it"?</label>
+        <textarea class="answer-field medium" placeholder="e.g. We get 5 new enquiries a month from it, or we won a tender where the client mentioned looking at our site…"></textarea>
+      </div>
+
+      <div class="question">
+        <label><span class="q-num">10.3</span> Who will manage / update the website after it's live? (e.g. adding new projects, updating job listings)</label>
+        <div class="checklist">
+          <div class="checklist-row">
+            <label class="check-item"><input type="checkbox"> Admin staff will update it themselves</label>
+            <label class="check-item"><input type="checkbox"> We'll get help when we need changes</label>
+            <label class="check-item"><input type="checkbox"> Not sure yet</label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ─── SECTION 11: TECHNICAL ─── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">11</div>
+      <div>
+        <h2>Technical &amp; Domain</h2>
+        <p>A few quick questions to make sure we can go live smoothly.</p>
+      </div>
+    </div>
+    <div class="section-body">
+
+      <div class="question">
+        <label><span class="q-num">11.1</span> Who manages the domain visionconstructions.com.au? (Where is it registered?)</label>
+        <div class="checklist">
+          <div class="checklist-row">
+            <label class="check-item"><input type="checkbox"> I manage it (Crazy Domains / GoDaddy / Netregistry etc)</label>
+            <label class="check-item"><input type="checkbox"> An IT person or agency manages it</label>
+            <label class="check-item"><input type="checkbox"> Not sure — I'll find out</label>
+          </div>
+        </div>
+        <textarea class="answer-field short" placeholder="Registrar name if known, or who to contact about DNS…"></textarea>
+      </div>
+
+      <div class="question">
+        <label><span class="q-num">11.2</span> Do you use Google Workspace (Gmail with your domain)? Or another email system?</label>
+        <textarea class="answer-field short" placeholder="e.g. Yes, Google Workspace. Or: We use Outlook / Telstra business email…"></textarea>
+      </div>
+
+      <div class="question">
+        <label><span class="q-num">11.3</span> Do you have Google Analytics or Google Search Console set up?</label>
+        <div class="checklist">
+          <div class="checklist-row">
+            <label class="check-item"><input type="checkbox"> Yes — I have a Google account for this</label>
+            <label class="check-item"><input type="checkbox"> No — not set up yet</label>
+            <label class="check-item"><input type="checkbox"> No idea — what are these?</label>
+          </div>
+        </div>
+        <p class="hint">We can set these up for you — they let you see how many people visit your site, where they come from, and what pages they look at. Very useful once the site is live.</p>
+      </div>
+
+      <div class="question">
+        <label><span class="q-num">11.4</span> Is there any content from the old Wix site that must be carried over?</label>
+        <div class="checklist">
+          <div class="checklist-row">
+            <label class="check-item"><input type="checkbox"> No — start fresh</label>
+            <label class="check-item"><input type="checkbox"> Some content — I'll list it</label>
+            <label class="check-item"><input type="checkbox"> Need to check the old site first</label>
+          </div>
+        </div>
+        <textarea class="answer-field medium" placeholder="Any specific pages, downloads (PDFs), or content from the old Wix site?"></textarea>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ─── SECTION 12: ANYTHING ELSE ─── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">12</div>
+      <div>
+        <h2>Anything Else?</h2>
+        <p>Stuff we haven't asked about that we should know.</p>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="question">
+        <label><span class="q-num">12.1</span> Is there anything about Vision Constructions, its history, clients, or projects that you think we should include on the website that we haven't asked about?</label>
+        <textarea class="answer-field tall" placeholder="Anything at all — awards, community involvement, charity work, interesting company history, specific plant owned, qualifications of key staff…"></textarea>
+      </div>
+      <div class="question">
+        <label><span class="q-num">12.2</span> Any questions or concerns about the website project?</label>
+        <textarea class="answer-field tall" placeholder="What's on your mind? Costs, timeline, what happens after launch, the Wix migration…"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUBMIT NOTE -->
+  <div style="background: var(--dark); border-radius: 16px; padding: 32px; margin-top: 8px; color: rgba(255,255,255,0.7); font-size: 0.9rem; line-height: 1.7;">
+    <p style="color:#fff; font-weight:700; font-size:1rem; margin-bottom:8px;">Once you've filled this in —</p>
+    <p>You can either: <strong style="color:var(--green);">(a)</strong> take a photo or screenshot of each section and send it through, or <strong style="color:var(--green);">(b)</strong> print it, fill it in by hand, and scan/photo it back. Rough notes are fine — we'll turn them into proper copy. You can also just call and we'll go through it over the phone.</p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="doc-footer">
+  <p>Vision Constructions QLD Pty Ltd &nbsp;·&nbsp; Website Project Brief &nbsp;·&nbsp; April 2025</p>
+  <p>Questions? Call <a href="tel:0747554839">(07) 4755 4839</a></p>
+</div>
+
+</body>
+</html>

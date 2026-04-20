@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vision Constructions — Website Feedback</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #EFEFEF;
+      color: #1A1A1A;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      max-width: 680px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 2px 24px rgba(0,0,0,0.08);
+    }
+
+    /* HEADER */
+    .header {
+      background: #1A1A1A;
+      padding: 32px 40px;
+    }
+    .header img { height: 36px; display: block; margin-bottom: 18px; }
+    .header h1 { font-size: 1.3rem; font-weight: 800; color: #fff; line-height: 1.3; margin-bottom: 6px; }
+    .header p { font-size: 0.85rem; color: rgba(255,255,255,0.4); }
+
+    /* SECTIONS */
+    .section { padding: 32px 40px; border-bottom: 1px solid #EBEBEB; }
+    .section:last-child { border-bottom: none; }
+    .section-tag {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #4DB848; margin-bottom: 6px;
+    }
+    .section-title {
+      font-size: 1rem; font-weight: 700; color: #1A1A1A; margin-bottom: 16px;
+    }
+    .section p {
+      font-size: 0.9rem; line-height: 1.7; color: #444;
+    }
+
+    /* SCREENSHOTS */
+    .screens { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px; }
+    .screens.full { grid-template-columns: 1fr; }
+    .screen {
+      position: relative; border-radius: 8px;
+      overflow: hidden; border: 1px solid #E0E0E0;
+    }
+    .screen img { width: 100%; height: auto; display: block; }
+    .screen-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: rgba(0,0,0,0.6); color: #fff;
+      font-size: 0.72rem; font-weight: 600; padding: 5px 10px;
+    }
+
+    /* QUESTIONS */
+    .q-list { display: flex; flex-direction: column; gap: 0; }
+    .q-item {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 16px 0; border-bottom: 1px solid #F0F0F0;
+    }
+    .q-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .q-num {
+      width: 26px; height: 26px; min-width: 26px;
+      border-radius: 50%; background: #4DB848; color: #fff;
+      font-size: 0.75rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px;
+    }
+    .q-text { font-size: 0.92rem; color: #1A1A1A; line-height: 1.55; }
+    .q-text .note { font-size: 0.82rem; color: #888; margin-top: 3px; }
+
+    /* PHOTO NEEDS */
+    .photo-list { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+    .photo-item {
+      display: flex; gap: 12px; align-items: flex-start;
+      background: #F7F7F7; border-radius: 8px; padding: 12px 14px;
+    }
+    .photo-item .pi-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+    .photo-item .pi-text { font-size: 0.88rem; color: #333; line-height: 1.5; }
+    .photo-item .pi-text strong { color: #1A1A1A; font-weight: 700; }
+
+    /* REPLY BOX */
+    .reply-box {
+      background: #1A1A1A; border-radius: 10px; padding: 20px 24px;
+      display: flex; gap: 12px; align-items: flex-start; margin-top: 20px;
+    }
+    .reply-box svg { width: 18px; height: 18px; color: #4DB848; flex-shrink: 0; margin-top: 2px; }
+    .reply-box p { font-size: 0.88rem; color: rgba(255,255,255,0.75); line-height: 1.6; }
+    .reply-box strong { color: #fff; }
+
+    /* FOOTER */
+    .footer { padding: 20px 40px; background: #F7F7F7; }
+    .footer p { font-size: 0.78rem; color: #AAA; text-align: center; }
+
+    /* ACCENT LINE */
+    .accent-line { height: 3px; background: linear-gradient(to right, #4DB848, #1A1A1A); }
+
+    @media (max-width: 640px) {
+      .wrap { margin: 0; border-radius: 0; }
+      .header, .section, .footer { padding: 24px 20px; }
+      .screens { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .wrap { box-shadow: none; border-radius: 0; max-width: 100%; margin: 0; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <img src="images/logo.png" alt="Vision Constructions">
+    <h1>Here's what the new website looks like</h1>
+    <p>We need a few things from you to finish it off — reply with your answers.</p>
+  </div>
+
+  <!-- SCREENSHOTS -->
+  <div class="section">
+    <div class="section-tag">Design Preview</div>
+    <div class="section-title">All 6 pages — design only, content is placeholder</div>
+
+    <div class="screens full" style="margin-bottom:10px;">
+      <div class="screen">
+        <img src="images/screenshots/home-hero.png" alt="Homepage">
+        <div class="screen-label">Homepage</div>
+      </div>
+    </div>
+    <div class="screens">
+      <div class="screen">
+        <img src="images/screenshots/about.png" alt="About">
+        <div class="screen-label">About Us</div>
+      </div>
+      <div class="screen">
+        <img src="images/screenshots/capabilities.png" alt="Capabilities">
+        <div class="screen-label">Capabilities</div>
+      </div>
+    </div>
+    <div class="screens" style="margin-top:10px;">
+      <div class="screen">
+        <img src="images/screenshots/projects.png" alt="Projects">
+        <div class="screen-label">Projects</div>
+      </div>
+      <div class="screen">
+        <img src="images/screenshots/careers.png" alt="Careers">
+        <div class="screen-label">Careers</div>
+      </div>
+    </div>
+    <div class="screens full" style="margin-top:10px;">
+      <div class="screen">
+        <img src="images/screenshots/contact.png" alt="Contact">
+        <div class="screen-label">Contact</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accent-line"></div>
+
+  <!-- QUESTIONS -->
+  <div class="section">
+    <div class="section-tag">Questions</div>
+    <div class="section-title">Just reply to this email with your answers</div>
+
+    <div class="q-list">
+
+      <div class="q-item">
+        <div class="q-num">1</div>
+        <div class="q-text">
+          What's your first reaction to the design — does it feel right for Vision?
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-num">2</div>
+        <div class="q-text">
+          Is all your contact info correct? <br>
+          <span class="note">Phone: (07) 4755 4839 · Email: admin@visionconstructions.com.au · 95 Crocodile Crescent, Mount St John QLD 4818</span>
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-num">3</div>
+        <div class="q-text">
+          Who are the directors / owners, and who are the members of the team? We'd like to add real names and roles to the About page.
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-num">4</div>
+        <div class="q-text">
+          What are Vision's real completed projects? List as many as you can — project name, client, location, and what was done. Even rough dot points are fine.
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-num">5</div>
+        <div class="q-text">
+          What roles are you currently hiring for?
+        </div>
+      </div>
+
+      <div class="q-item">
+        <div class="q-num">6</div>
+        <div class="q-text">
+          What is the one thing that makes Vision better than other civil contractors in NQ?
+          <div class="note">This goes on the homepage as your main selling point — be honest, what do clients actually say?</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PHOTOS -->
+  <div class="section">
+    <div class="section-tag">Photos</div>
+    <div class="section-title">Send us what you have — anything helps</div>
+    <p>We just need real photos to replace the placeholders. Even phone photos are fine. Send whatever you can and we'll make it work.</p>
+
+    <div class="photo-list">
+      <div class="photo-item">
+        <div class="pi-icon">🛣️</div>
+        <div class="pi-text"><strong>Job site photos</strong> — roads, earthworks, civil works in progress</div>
+      </div>
+      <div class="photo-item">
+        <div class="pi-icon">⚓</div>
+        <div class="pi-text"><strong>Marine / water works</strong> — jetties, waterways, coastal works</div>
+      </div>
+      <div class="photo-item">
+        <div class="pi-icon">👷</div>
+        <div class="pi-text"><strong>Crew on site</strong> — your team working, in PPE</div>
+      </div>
+      <div class="photo-item">
+        <div class="pi-icon">🚗</div>
+        <div class="pi-text"><strong>Vision vehicles</strong> — branded Hilux, trucks, or plant</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <p>Vision Constructions QLD Pty Ltd &nbsp;·&nbsp; ABN 54 136 270 347 &nbsp;·&nbsp; (07) 4755 4839</p>
+  </div>
+
+</div>
+</body>
+</html>
