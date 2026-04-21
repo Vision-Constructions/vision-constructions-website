@@ -1437,6 +1437,12 @@ body.v2 .reveal.visible { opacity: 1; transform: translateY(0); }
   display: flex; align-items: center; justify-content: center; margin-bottom: 22px;
 }
 .v2-feature-icon svg { width: 24px; height: 24px; color: var(--h-green); }
+.v2-feature-icon-img {
+  width: auto; max-width: 240px; height: 64px;
+  object-fit: contain; object-position: left center;
+  display: block; margin-bottom: 22px; align-self: flex-start;
+  background: transparent; border-radius: 0;
+}
 .v2-feature-icon.v2-feature-badge {
   width: auto; height: auto;
   padding: 14px 22px;
