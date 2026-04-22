@@ -8,7 +8,7 @@ All notable changes to the Vision Constructions website. Dates are in `YYYY-MM-D
 
 | Date | Change |
 |---|---|
-| 2026-04-23 | **Homepage hero headline word change.** `Built on values.` → `Driven on values.` on the index.html hero. Second line (`Delivered with Vision.`) unchanged. |
+| 2026-04-23 | **Homepage hero headline reverted.** Briefly changed `Built on values.` → `Driven on values.` to test the auto-deploy pipeline end-to-end (GitHub push → Vercel build → live site). Verified working, reverted to `Built on values.` |
 | 2026-04-21 | **AIMS client added to Jetty Maintenance project card.** Added a `Client: Australian Institute of Marine Science` meta line to the Jetty Maintenance & Upgrades card on the projects page, alongside the existing Location and Completed fields. First project card to re-introduce client attribution since the earlier sweep stripped all client names — driven by AIMS project sheet being the first real client data approved for public display. |
 | 2026-04-21 | **Brendan Rosser restored to team section.** Added Brendan's card back onto about.html alongside Travis Maher and Jack Willcox. Team now shows 3: Travis (MD), Jack (Engineering & BD), Brendan (Supervisor). |
 | 2026-04-21 | **About page — employee count and lost-time injuries claim removed.** Dropped "16 direct employees" from the Our Team stat (now just reads "Experienced site supervisors, qualified tradespeople & operators, Townsville-based") and dropped "Zero lost-time injuries since founding" from the Safety Record stat (now "ISO 45001 WHS system · QLD WHS Act compliant · regular audits"). Keeps the site free of specific headcount and injury-record claims. |
