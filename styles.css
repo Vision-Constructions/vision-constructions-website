@@ -1065,16 +1065,8 @@ body.v2 h1, body.v2 h2, body.v2 h3,
 body.v2 h4, body.v2 h5 { font-family: var(--font-display); letter-spacing: -0.02em; }
 
 /* ── NAV overrides for home-v2 ─────────── */
-body.v2 .nav.scrolled { background: rgba(245, 241, 232, 0.98); box-shadow: 0 1px 0 rgba(0,0,0,0.06); }
-@media (min-width: 769px) {
-  body.v2 .nav.scrolled { background: rgba(245, 241, 232, 0.94); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
-}
-body.v2 .nav.scrolled .nav-links a { color: var(--h-ink-muted); }
-body.v2 .nav.scrolled .nav-links a:hover,
-body.v2 .nav.scrolled .nav-links a.active { color: var(--h-ink); }
-body.v2 .nav.scrolled .nav-phone { color: var(--h-ink); }
-body.v2 .nav.scrolled .nav-logo img.nav-logo-light { display: none; }
-body.v2 .nav.scrolled .nav-logo img.nav-logo-dark { display: block; }
+/* Nav stays dark with white text on v2 pages at all scroll positions */
+body.v2 .nav.scrolled { background: rgba(17, 17, 17, 0.98); box-shadow: 0 1px 0 rgba(77, 184, 72, 0.1); }
 
 /* ── v2 shared helpers ─────────────────── */
 .v2-container { max-width: 1320px; margin: 0 auto; padding: 0 32px; }
