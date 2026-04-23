@@ -28,15 +28,20 @@ h1, h2, h3, h4, h5, .hero h1, .section-title, .stat-number, .footer-col h5 {
   font-family: var(--font-display);
 }
 
-html { scroll-behavior: smooth; scroll-padding-top: 80px; scrollbar-gutter: stable; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  scrollbar-gutter: stable;
+  overflow-x: hidden;
+}
 
 body {
   font-family: var(--font);
   background: var(--dark);
   color: var(--grey-200);
   line-height: 1.6;
-  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
+  min-height: 100%;
 }
 
 img { max-width: 100%; height: auto; display: block; }
@@ -49,7 +54,11 @@ button { border: none; cursor: pointer; font-family: inherit; }
    NAVIGATION
    ======================================== */
 .nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0;
+  right: 0;
+  z-index: 1000;
   padding: 0 24px;
   transition: background 0.4s ease, box-shadow 0.4s ease;
 }
