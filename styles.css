@@ -28,7 +28,7 @@ h1, h2, h3, h4, h5, .hero h1, .section-title, .stat-number, .footer-col h5 {
   font-family: var(--font-display);
 }
 
-html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; scrollbar-gutter: stable; }
 
 body {
   font-family: var(--font);
