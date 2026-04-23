@@ -1545,6 +1545,11 @@ body.v2 .reveal.visible { opacity: 1; transform: translateY(0); }
 .cap-flip:focus-visible { outline: 2px solid var(--h-green); outline-offset: 4px; }
 
 .cap-flip-wrap { display: flex; flex-direction: column; gap: 18px; }
+.capstmt-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 72px; align-items: center; }
+@media (max-width: 900px) {
+  .capstmt-grid { grid-template-columns: 1fr; gap: 48px; }
+  .cap-flip-wrap { max-width: 420px; margin: 0 auto; width: 100%; }
+}
 .cap-flip-controls {
   display: flex; align-items: center; justify-content: center; gap: 20px;
   user-select: none;
