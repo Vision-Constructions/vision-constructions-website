@@ -11,16 +11,17 @@ window.addEventListener('scroll', () => {
 // ── Mobile menu toggle ─────────────────────
 const toggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
+const setMenuOpen = (open) => {
+  toggle?.classList.toggle('active', open);
+  navLinks?.classList.toggle('open', open);
+  document.body.classList.toggle('nav-open', open);
+};
 toggle?.addEventListener('click', () => {
-  toggle.classList.toggle('active');
-  navLinks?.classList.toggle('open');
+  setMenuOpen(!navLinks?.classList.contains('open'));
 });
 // Close on link click
 navLinks?.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    toggle?.classList.remove('active');
-    navLinks.classList.remove('open');
-  });
+  link.addEventListener('click', () => setMenuOpen(false));
 });
 
 // ── Active nav link ────────────────────────
