@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vision Constructions — Capability Statement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0A1628;
+    --navy-deep:#050D18;
+    --green:#4CB848;
+    --green-dim:#3A9637;
+    --stone:#F4F2ED;
+    --stone-mid:#D4D2CC;
+    --stone-dark:#8B8984;
+    --ink:#121013;
+    --ink-muted:#3A3834;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:#555;font-family:'Inter',sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;font-smooth:always}
+
+  @page{
+    size:A4;
+    margin:0;
+  }
+
+  .page{
+    width:210mm;
+    height:297mm;
+    position:relative;
+    overflow:hidden;
+    background:#fff;
+    page-break-after:always;
+    break-after:page;
+  }
+  .page:last-child{page-break-after:auto}
+
+  @media screen{
+    .page{
+      margin:10mm auto;
+      box-shadow:0 8px 40px rgba(0,0,0,.4);
+    }
+  }
+
+  img{display:block;max-width:100%;height:auto}
+
+  .eyebrow{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.24em;
+    font-size:9pt;
+  }
+
+  .h-display{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    letter-spacing:-.02em;
+    line-height:.95;
+  }
+
+  .h-section{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    letter-spacing:-.015em;
+    line-height:1;
+  }
+
+  .rule-green{
+    width:48mm;height:2.5pt;background:var(--green);display:block;
+  }
+
+  .page-num{
+    position:absolute;
+    bottom:12mm;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:8pt;
+    letter-spacing:.2em;
+    color:var(--stone-dark);
+    font-weight:500;
+  }
+  .page-num.left{left:18mm}
+  .page-num.right{right:18mm}
+
+  .footer-brand{
+    position:absolute;
+    bottom:12mm;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:8pt;
+    letter-spacing:.22em;
+    font-weight:600;
+    text-transform:uppercase;
+    color:var(--stone-dark);
+  }
+  .footer-brand.left{left:18mm}
+  .footer-brand.right{right:18mm}
+
+  /* =========================================================
+     PAGE 1 — COVER
+     ========================================================= */
+  .cover{
+    background:var(--navy-deep);
+    color:#fff;
+  }
+  .cover-media{
+    position:absolute;inset:0;
+  }
+  .cover-media img{
+    width:100%;height:100%;object-fit:cover;opacity:.55;
+  }
+  .cover-scrim{
+    position:absolute;inset:0;
+    background:linear-gradient(135deg,rgba(5,13,24,.55) 0%,rgba(5,13,24,.85) 60%,rgba(5,13,24,.95) 100%);
+  }
+  .cover-inner{
+    position:absolute;inset:0;
+    padding:24mm 20mm;
+    display:flex;flex-direction:column;justify-content:space-between;
+  }
+  .cover-top{display:flex;justify-content:space-between;align-items:flex-start}
+  .cover-logo{height:14mm;width:auto;filter:brightness(0) invert(1)}
+  .cover-meta{
+    text-align:right;
+    font-family:'Space Grotesk',sans-serif;font-weight:500;
+    font-size:8pt;letter-spacing:.22em;text-transform:uppercase;
+    color:rgba(255,255,255,.6);line-height:1.7;
+  }
+  .cover-title-block{margin-top:auto}
+  .cover-eyebrow{
+    font-family:'Space Grotesk',sans-serif;font-weight:600;
+    font-size:10pt;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--green);margin-bottom:10mm;
+  }
+  .cover-title{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:78pt;line-height:.9;letter-spacing:-.035em;
+    color:#fff;
+  }
+  .cover-title em{font-style:normal;color:var(--green)}
+  .cover-tagline{
+    margin-top:14mm;
+    display:flex;align-items:center;gap:6mm;
+    font-family:'Space Grotesk',sans-serif;font-weight:600;
+    text-transform:uppercase;letter-spacing:.22em;font-size:9.5pt;
+    color:rgba(255,255,255,.9);
+  }
+  .cover-tagline::before{
+    content:"";width:16mm;height:1.5pt;background:var(--green);
+  }
+  .cover-bottom{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    margin-top:14mm;
+  }
+  .cover-stat{
+    font-family:'Space Grotesk',sans-serif;color:rgba(255,255,255,.75);
+    font-size:8pt;letter-spacing:.22em;text-transform:uppercase;
+    line-height:2;font-weight:500;
+  }
+  .cover-stat strong{
+    display:block;color:#fff;font-weight:700;
+    font-size:26pt;letter-spacing:-.02em;line-height:1;margin-bottom:2mm;
+  }
+
+  /* =========================================================
+     PAGE 2 — CONTENTS
+     ========================================================= */
+  .contents{
+    background:var(--stone);
+    padding:20mm 18mm;
+    display:flex;flex-direction:column;overflow:hidden;
+  }
+  .contents-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10mm}
+  .contents-logo{height:10mm;width:auto}
+  .contents-eyebrow{color:var(--stone-dark)}
+  .contents h2{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:54pt;
+    line-height:.9;
+    letter-spacing:-.03em;
+    color:var(--navy);
+    margin-bottom:4mm;
+  }
+  .contents-sub{
+    font-family:'Inter',sans-serif;
+    color:var(--ink-muted);
+    font-size:10.5pt;
+    max-width:120mm;
+    margin-bottom:10mm;
+    line-height:1.55;
+  }
+  .toc{
+    border-top:1pt solid var(--stone-mid);
+    margin-top:auto;
+  }
+  .toc-row{
+    display:grid;
+    grid-template-columns:18mm 1fr auto;
+    padding:3.8mm 0;
+    border-bottom:1pt solid var(--stone-mid);
+    align-items:baseline;
+    color:var(--navy);
+  }
+  .toc-num{
+    font-family:'Space Grotesk',sans-serif;font-weight:600;
+    font-size:9.5pt;letter-spacing:.1em;color:var(--green);
+  }
+  .toc-name{
+    font-family:'Space Grotesk',sans-serif;font-weight:600;
+    font-size:14pt;letter-spacing:-.01em;color:var(--navy);
+  }
+  .toc-page{
+    font-family:'Space Grotesk',sans-serif;font-weight:500;
+    font-size:10pt;color:var(--stone-dark);
+    letter-spacing:.12em;
+  }
+
+  /* =========================================================
+     PAGE 3 — OUR VISION (SPLIT)
+     ========================================================= */
+  .split{
+    display:grid;grid-template-columns:1fr 1fr;
+  }
+  .split-media{background:#000;overflow:hidden;position:relative}
+  .split-media img{width:100%;height:100%;object-fit:cover}
+  .split-body{
+    padding:18mm 16mm;display:flex;flex-direction:column;
+    background:#fff;position:relative;
+    overflow:hidden;
+  }
+  .split-body .eyebrow{color:var(--green);margin-bottom:5mm}
+  .split-body h2{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:34pt;line-height:.95;letter-spacing:-.022em;
+    color:var(--navy);margin-bottom:7mm;
+  }
+  .split-body h2 em{font-style:normal;color:var(--green)}
+  .split-body p{
+    font-family:'Inter',sans-serif;
+    font-size:9.5pt;line-height:1.55;color:var(--ink-muted);
+    margin-bottom:4mm;
+  }
+  .pull-quote{
+    margin-top:auto;
+    padding-top:7mm;
+    border-top:1pt solid var(--stone-mid);
+    font-family:'Space Grotesk',sans-serif;font-weight:600;
+    font-size:12pt;line-height:1.3;color:var(--navy);
+    letter-spacing:-.01em;
+  }
+  .pull-quote::before{
+    content:"";display:block;width:14mm;height:2pt;background:var(--green);
+    margin-bottom:4mm;
+  }
+
+  /* =========================================================
+     PAGE 4 — VISION DIFFERENCE (STATS)
+     ========================================================= */
+  .diff{
+    background:var(--navy);color:#fff;
+    padding:24mm 20mm;
+    display:flex;flex-direction:column;
+    position:relative;
+  }
+  .diff::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:70mm;
+    background:url('images/civil-grader-road.jpg') center/cover;
+    opacity:.35;
+  }
+  .diff::after{
+    content:"";position:absolute;top:0;left:0;right:0;height:70mm;
+    background:linear-gradient(180deg,rgba(10,22,40,.3) 0%,rgba(10,22,40,1) 95%);
+  }
+  .diff-inner{position:relative;z-index:2;display:flex;flex-direction:column;height:100%}
+  .diff-eyebrow{color:var(--green);margin-bottom:8mm}
+  .diff h2{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:54pt;line-height:.9;letter-spacing:-.03em;
+    max-width:170mm;margin-bottom:auto;
+  }
+  .diff h2 em{font-style:normal;color:var(--green)}
+  .diff-stats{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:12mm;margin:22mm 0 14mm;
+  }
+  .diff-stat strong{
+    display:block;
+    font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:58pt;line-height:.9;letter-spacing:-.03em;color:#fff;
+  }
+  .diff-stat strong sup{
+    font-size:30pt;color:var(--green);vertical-align:top;margin-left:2mm;line-height:1;
+  }
+  .diff-stat span{
+    display:block;margin-top:4mm;
+    font-family:'Inter',sans-serif;font-size:10pt;
+    color:rgba(255,255,255,.75);line-height:1.5;
+    max-width:50mm;
+  }
+  .diff-copy{
+    max-width:140mm;color:rgba(255,255,255,.88);
+    font-size:10.5pt;line-height:1.65;
+    padding-top:10mm;border-top:1pt solid rgba(255,255,255,.15);
+  }
+
+  /* =========================================================
+     PAGE 5 — SQE (SAFETY/QUALITY/ENVIRONMENT)
+     ========================================================= */
+  .sqe{background:var(--stone);padding:22mm 18mm;position:relative;overflow:hidden;display:flex;flex-direction:column}
+  .sqe-head{margin-bottom:10mm}
+  .sqe-head .eyebrow{color:var(--green);margin-bottom:5mm;display:block}
+  .sqe-head h2{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:42pt;line-height:.92;letter-spacing:-.025em;color:var(--navy);
+    max-width:155mm;
+  }
+  .sqe-head h2 em{font-style:normal;color:var(--green)}
+  .sqe-intro{
+    max-width:155mm;font-size:10pt;line-height:1.6;
+    color:var(--ink-muted);margin-bottom:11mm;
+  }
+  .sqe-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:7mm;
+  }
+  .sqe-card{
+    background:#fff;padding:8mm;
+    border-top:3pt solid var(--green);
+  }
+  .sqe-card .num{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;
+    color:var(--green);font-size:9.5pt;letter-spacing:.18em;
+    margin-bottom:5mm;display:block;
+  }
+  .sqe-card h3{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:15pt;color:var(--navy);margin-bottom:4mm;
+    letter-spacing:-.01em;line-height:1.1;
+  }
+  .sqe-card p{
+    font-family:'Inter',sans-serif;font-size:8.5pt;
+    line-height:1.55;color:var(--ink-muted);
+  }
+  .sqe-badges{
+    margin-top:11mm;padding-top:8mm;
+    border-top:1pt solid var(--stone-mid);
+    display:flex;justify-content:space-between;align-items:center;
+    gap:6mm;
+  }
+  .sqe-badges-label{
+    font-family:'Space Grotesk',sans-serif;font-weight:600;
+    font-size:8.5pt;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--stone-dark);
+  }
+  .sqe-badges-row{display:flex;gap:6mm;align-items:center}
+  .sqe-badges-row img{height:11mm;width:auto}
+
+  /* =========================================================
+     PAGE 6 — OUR CAPABILITIES
+     ========================================================= */
+  .caps{background:#fff;display:flex;flex-direction:column}
+  .caps-hero{
+    height:110mm;position:relative;overflow:hidden;
+  }
+  .caps-hero img{width:100%;height:100%;object-fit:cover;object-position:center 55%}
+  .caps-hero-label{
+    position:absolute;left:20mm;bottom:14mm;
+    color:#fff;
+  }
+  .caps-hero-label .eyebrow{color:var(--green);margin-bottom:4mm}
+  .caps-hero-label h2{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:52pt;line-height:.92;letter-spacing:-.028em;
+    color:#fff;
+  }
+  .caps-hero-label h2 em{font-style:normal;color:var(--green)}
+  .caps-hero-scrim{
+    position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(10,22,40,.05) 0%,rgba(10,22,40,.75) 100%);
+  }
+  .caps-list{
+    padding:16mm 20mm;flex:1;
+    display:grid;grid-template-columns:repeat(2,1fr);
+    gap:10mm 12mm;
+  }
+  .caps-list-intro{
+    grid-column:1/-1;
+    font-size:11pt;line-height:1.65;color:var(--ink-muted);
+    max-width:160mm;margin-bottom:2mm;
+  }
+  .caps-item{
+    padding-top:6mm;
+    border-top:1.5pt solid var(--navy);
+  }
+  .caps-item .num{
+    font-family:'Space Grotesk',sans-serif;font-weight:600;
+    font-size:9pt;letter-spacing:.2em;color:var(--green);
+    margin-bottom:4mm;display:block;
+  }
+  .caps-item h4{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:15pt;color:var(--navy);letter-spacing:-.01em;
+    margin-bottom:3mm;line-height:1.1;
+  }
+  .caps-item p{
+    font-family:'Inter',sans-serif;font-size:9pt;
+    line-height:1.55;color:var(--ink-muted);
+  }
+
+  /* =========================================================
+     CAPABILITY DETAIL PAGES (7-10)
+     ========================================================= */
+  .cap-page{
+    background:#fff;display:flex;flex-direction:column;overflow:hidden;
+  }
+  .cap-head{
+    padding:18mm 18mm 8mm;
+    display:flex;justify-content:space-between;align-items:flex-end;
+    border-bottom:1.5pt solid var(--navy);
+  }
+  .cap-head-left{max-width:130mm}
+  .cap-head-num{
+    font-family:'Space Grotesk',sans-serif;font-weight:600;
+    font-size:10pt;letter-spacing:.22em;color:var(--green);
+    margin-bottom:4mm;text-transform:uppercase;
+  }
+  .cap-head h2{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:32pt;line-height:1;letter-spacing:-.02em;
+    color:var(--navy);
+  }
+  .cap-head-right{
+    font-family:'Space Grotesk',sans-serif;font-weight:500;
+    font-size:9pt;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--stone-dark);text-align:right;max-width:45mm;
+  }
+  .cap-photo-strip{
+    display:grid;grid-template-columns:2fr 1fr 1fr;
+    gap:1.5mm;height:48mm;margin:0;
+  }
+  .cap-photo-strip > div{background:#000;overflow:hidden}
+  .cap-photo-strip img{width:100%;height:100%;object-fit:cover}
+  .cap-body{
+    padding:10mm 18mm 16mm;flex:1;
+    display:grid;grid-template-columns:5fr 3fr;gap:10mm;
+  }
+  .cap-body h3{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:9.5pt;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--green);margin-bottom:5mm;
+  }
+  .cap-caps{display:flex;flex-direction:column;gap:2.5mm}
+  .cap-cap{
+    padding:2.5mm 0;border-bottom:.75pt solid var(--stone-mid);
+  }
+  .cap-cap:last-child{border-bottom:none}
+  .cap-cap strong{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:10.5pt;color:var(--navy);display:block;margin-bottom:1mm;
+    letter-spacing:-.01em;
+  }
+  .cap-cap p{
+    font-family:'Inter',sans-serif;font-size:8pt;
+    line-height:1.45;color:var(--ink-muted);
+  }
+  .cap-perf{
+    background:var(--navy);color:#fff;padding:8mm;
+    align-self:flex-start;
+  }
+  .cap-perf h3{color:var(--green)}
+  .cap-perf ul{list-style:none;padding:0;margin:0}
+  .cap-perf li{
+    font-family:'Inter',sans-serif;font-size:8.5pt;line-height:1.35;
+    padding:2.5mm 0;border-bottom:.5pt solid rgba(255,255,255,.15);
+    color:rgba(255,255,255,.9);
+  }
+  .cap-perf li:last-child{border-bottom:none}
+  .cap-perf li span{
+    display:block;font-family:'Space Grotesk',sans-serif;font-weight:500;
+    font-size:7.5pt;color:rgba(255,255,255,.55);margin-top:.8mm;letter-spacing:.1em;
+  }
+
+  /* =========================================================
+     PAGE 11 — COMPANY DETAILS
+     ========================================================= */
+  .company{
+    background:var(--stone);padding:22mm 18mm;
+    display:flex;flex-direction:column;overflow:hidden;
+  }
+  .company-head{margin-bottom:12mm}
+  .company-head .eyebrow{color:var(--green);margin-bottom:6mm}
+  .company-head h2{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:50pt;line-height:.92;letter-spacing:-.028em;color:var(--navy);
+  }
+  .company-head h2 em{font-style:normal;color:var(--green)}
+  .company-grid{
+    background:#fff;padding:10mm 12mm;
+    display:grid;grid-template-columns:1fr;gap:0;
+    border-left:3pt solid var(--green);
+  }
+  .company-row{
+    padding:5mm 0;border-bottom:1pt solid var(--stone-mid);
+    display:grid;grid-template-columns:42mm 1fr;align-items:baseline;
+    gap:8mm;
+  }
+  .company-row:last-child{border-bottom:none}
+  .company-row dt{
+    font-family:'Space Grotesk',sans-serif;font-weight:600;
+    font-size:9pt;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--stone-dark);
+  }
+  .company-row dd{
+    font-family:'Inter',sans-serif;font-size:11pt;
+    color:var(--navy);font-weight:500;line-height:1.4;
+  }
+  .company-photo{
+    flex:1;margin-top:10mm;overflow:hidden;min-height:55mm;
+    position:relative;
+  }
+  .company-photo img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
+  .company-photo-label{
+    position:absolute;bottom:7mm;left:8mm;
+    font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:10pt;color:#fff;text-transform:uppercase;letter-spacing:.22em;
+    background:var(--navy);padding:3mm 5mm;
+  }
+
+  @media print{
+    html,body{background:#fff}
+    .page{margin:0;box-shadow:none}
+  }
+
+</style>
+</head>
+<body>
+
+<!-- =============== PAGE 1 — COVER =============== -->
+<section class="page cover">
+  <div class="cover-media"><img src="images/hero-crane-pontoon.jpg" alt=""></div>
+  <div class="cover-scrim"></div>
+  <div class="cover-inner">
+    <div class="cover-top">
+      <img class="cover-logo" src="images/logo.svg" alt="Vision Constructions">
+      <div class="cover-meta">
+        Vision Constructions QLD Pty Ltd<br>
+        Issue 02 · 2026
+      </div>
+    </div>
+    <div class="cover-title-block">
+      <div class="cover-eyebrow">Capability Statement</div>
+      <div class="cover-title">Built on values.<br><em>Delivered with Vision.</em></div>
+      <div class="cover-tagline">North Queensland · Since 2009</div>
+      <div class="cover-bottom">
+        <div class="cover-stat"><strong>15+</strong>Years delivering</div>
+        <div class="cover-stat"><strong>200+</strong>Projects completed</div>
+        <div class="cover-stat"><strong>4</strong>Capability streams</div>
+        <div class="cover-stat"><strong>ISO</strong>9001 · 14001 · 45001</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== PAGE 2 — CONTENTS =============== -->
+<section class="page contents">
+  <div class="contents-header">
+    <img class="contents-logo" src="images/logo.svg" alt="Vision Constructions">
+    <span class="eyebrow contents-eyebrow">Capability Statement · 2026</span>
+  </div>
+  <span class="eyebrow" style="color:var(--green);margin-bottom:6mm">Contents</span>
+  <h2>Everything<br>we do.</h2>
+  <p class="contents-sub">A complete view of Vision Constructions' capabilities, people, and project experience across North Queensland — built for procurement teams, principal contractors, and asset owners.</p>
+  <div class="toc">
+    <div class="toc-row"><span class="toc-num">01</span><span class="toc-name">Our Vision</span><span class="toc-page">P. 03</span></div>
+    <div class="toc-row"><span class="toc-num">02</span><span class="toc-name">The Vision Difference</span><span class="toc-page">P. 04</span></div>
+    <div class="toc-row"><span class="toc-num">03</span><span class="toc-name">Safety · Quality · Environment</span><span class="toc-page">P. 05</span></div>
+    <div class="toc-row"><span class="toc-num">04</span><span class="toc-name">Our Capabilities</span><span class="toc-page">P. 06</span></div>
+    <div class="toc-row"><span class="toc-num">05</span><span class="toc-name">Infrastructure Support Services</span><span class="toc-page">P. 07</span></div>
+    <div class="toc-row"><span class="toc-num">06</span><span class="toc-name">Marine &amp; Water Infrastructure</span><span class="toc-page">P. 08</span></div>
+    <div class="toc-row"><span class="toc-num">07</span><span class="toc-name">Structural, Mechanical &amp; Piping</span><span class="toc-page">P. 09</span></div>
+    <div class="toc-row"><span class="toc-num">08</span><span class="toc-name">Civil Construction</span><span class="toc-page">P. 10</span></div>
+    <div class="toc-row"><span class="toc-num">09</span><span class="toc-name">Company Details</span><span class="toc-page">P. 11</span></div>
+  </div>
+  <span class="page-num right">02</span>
+</section>
+
+<!-- =============== PAGE 3 — OUR VISION =============== -->
+<section class="page split">
+  <div class="split-media"><img src="images/civil-grader-road.jpg" alt=""></div>
+  <div class="split-body">
+    <span class="eyebrow">01 · Our Vision</span>
+    <h2>Purpose, integrity, <em>and people who care.</em></h2>
+    <p>At Vision Constructions, we build with purpose, integrity, and genuine care for the people who make our work possible. Since 2009, we've grown into a trusted North Queensland construction company by delivering quality, value, and dependable project outcomes.</p>
+    <p>Clients choose us because we solve problems, streamline the process, and consistently deliver safe, high-quality projects on time. We're known for our attention to detail and a hassle-free approach that elevates the standard of project delivery.</p>
+    <p>Our strength lies in our people — honesty, humility, hard work, and a commitment to going home safe each day. Their professionalism forms the foundation of every project we undertake.</p>
+    <div class="pull-quote">To be known for our people, our integrity, and the quality we deliver in every project.</div>
+    <span class="page-num left" style="bottom:12mm">03</span>
+  </div>
+</section>
+
+<!-- =============== PAGE 4 — THE VISION DIFFERENCE =============== -->
+<section class="page diff">
+  <div class="diff-inner">
+    <span class="eyebrow diff-eyebrow">02 · The Vision Difference</span>
+    <h2>Problem solvers. <em>Not coordinators.</em></h2>
+    <div class="diff-stats">
+      <div class="diff-stat"><strong>200<sup>+</sup></strong><span>Projects delivered across civil, marine &amp; infrastructure since 2009.</span></div>
+      <div class="diff-stat"><strong>4</strong><span>Integrated capability streams under one accountable team.</span></div>
+      <div class="diff-stat"><strong>NQ</strong><span>North Queensland-based, locally owned, remote-capable.</span></div>
+    </div>
+    <div class="diff-copy">A seamless, end-to-end solution for clients — whether supporting planned works or responding to urgent issues, we remove the hassle of coordinating multiple contractors. Our multi-discipline team mobilises quickly, works efficiently across complex sites, and adapts to changing operational requirements. In-house engineering capability and experienced project managers deliver technically sound solutions with clear oversight across every phase of delivery.</div>
+  </div>
+  <span class="page-num right" style="color:rgba(255,255,255,.5)">04</span>
+</section>
+
+<!-- =============== PAGE 5 — SAFETY · QUALITY · ENVIRONMENT =============== -->
+<section class="page sqe">
+  <div class="sqe-head">
+    <span class="eyebrow">03 · Safety · Quality · Environment</span>
+    <h2>Disciplined on safety. <em>Relentless on quality.</em></h2>
+  </div>
+  <p class="sqe-intro">Our integrated management systems are fully ISO-accredited, ensuring we operate to internationally recognised standards across all areas of our work — so every person goes home unharmed and every client gets reliable, high-standard outcomes.</p>
+  <div class="sqe-grid">
+    <div class="sqe-card">
+      <span class="num">01 / SAFETY</span>
+      <h3>Every person goes home.</h3>
+      <p>Disciplined processes, proactive planning, and a culture that empowers our people to work safely and look out for one another. Certified to <strong>ISO&nbsp;45001</strong>, aligned with the QLD WHS Act.</p>
+    </div>
+    <div class="sqe-card">
+      <span class="num">02 / QUALITY</span>
+      <h3>Reliable outcomes, first time.</h3>
+      <p>Robust controls, clear documentation, and skilled personnel. We meet client expectations and deliver reliable, high-standard outcomes. Certified to <strong>ISO&nbsp;9001</strong>.</p>
+    </div>
+    <div class="sqe-card">
+      <span class="num">03 / ENVIRONMENT</span>
+      <h3>Operate with low impact.</h3>
+      <p>Environmental responsibility guides our planning and construction. We reduce waste, prevent environmental harm, and operate sustainably on every site. Certified to <strong>ISO&nbsp;14001</strong>.</p>
+    </div>
+  </div>
+  <div class="sqe-badges">
+    <span class="sqe-badges-label">Certified by QSERC</span>
+    <div class="sqe-badges-row">
+      <img src="images/qserc-iso-45001.png" alt="ISO 45001">
+      <img src="images/qserc-iso-14001.png" alt="ISO 14001">
+      <img src="images/qserc-iso-9001.png" alt="ISO 9001">
+    </div>
+  </div>
+  <span class="page-num right">05</span>
+</section>
+
+<!-- =============== PAGE 6 — OUR CAPABILITIES =============== -->
+<section class="page caps">
+  <div class="caps-hero">
+    <img src="images/fleet-coastal.jpg" alt="">
+    <div class="caps-hero-scrim"></div>
+    <div class="caps-hero-label">
+      <span class="eyebrow">04 · Our Capabilities</span>
+      <h2>One team. <em>Four disciplines.</em></h2>
+    </div>
+  </div>
+  <div class="caps-list">
+    <p class="caps-list-intro">A seamless, end-to-end offering across four integrated capability streams — each with in-house engineering oversight, experienced site leadership, and a shared safety and quality system.</p>
+    <div class="caps-item">
+      <span class="num">05 / INFRASTRUCTURE SUPPORT</span>
+      <h4>Operational support &amp; engineering services.</h4>
+      <p>Concrete rectification, asset inspection, minor civil projects, and specialist trade services for operational sites.</p>
+    </div>
+    <div class="caps-item">
+      <span class="num">06 / MARINE &amp; WATER</span>
+      <h4>Marine &amp; water infrastructure.</h4>
+      <p>Concrete structure rectification, pile repairs, protective coatings, fender repairs, and cathodic protection for marine assets.</p>
+    </div>
+    <div class="caps-item">
+      <span class="num">07 / STRUCTURAL, MECHANICAL &amp; PIPING</span>
+      <h4>Fabrication, site welding &amp; steel rectification.</h4>
+      <p>In-house fabrication, structural site welding, and steel rectification delivered to AS/NZS 1554 standards.</p>
+    </div>
+    <div class="caps-item">
+      <span class="num">08 / CIVIL CONSTRUCTION</span>
+      <h4>Civil construction &amp; drainage.</h4>
+      <p>Bulk earthworks, road construction, drainage structures, concrete works, and site clearing across public and private networks.</p>
+    </div>
+  </div>
+  <span class="page-num right">06</span>
+</section>
+
+<!-- =============== PAGE 7 — INFRASTRUCTURE SUPPORT =============== -->
+<section class="page cap-page">
+  <div class="cap-head">
+    <div class="cap-head-left">
+      <div class="cap-head-num">05 · Capability stream one</div>
+      <h2>Infrastructure Support Services</h2>
+    </div>
+    <div class="cap-head-right">Operational sites · 2022–Current</div>
+  </div>
+  <div class="cap-photo-strip">
+    <div><img src="images/support-filter-servicing.jpg" alt=""></div>
+    <div><img src="images/tank-access-overhead.jpg" alt=""></div>
+    <div><img src="images/chemical-dosing-skids.jpg" alt=""></div>
+  </div>
+  <div class="cap-body">
+    <div>
+      <h3>Core capabilities</h3>
+      <div class="cap-caps">
+        <div class="cap-cap"><strong>Concrete Rectification</strong><p>Structural repairs of defective and deteriorating concrete structures.</p></div>
+        <div class="cap-cap"><strong>Operational Support &amp; Engineering</strong><p>Civil and structural services tailored to operational sites, including ad-hoc repairs and small project delivery.</p></div>
+        <div class="cap-cap"><strong>Minor Civil Construction Projects</strong><p>Concrete works, drainage, earthworks, structural repairs, and small-scale infrastructure upgrades.</p></div>
+        <div class="cap-cap"><strong>Asset Inspection &amp; Maintenance</strong><p>Routine inspections, condition reporting and programmed maintenance for hard-to-access and high-risk assets.</p></div>
+        <div class="cap-cap"><strong>Specialist Trade Services</strong><p>In-house metal fabrication, pipework and plumbing capabilities for responsive, onsite problem solving.</p></div>
+      </div>
+    </div>
+    <div class="cap-perf">
+      <h3>Past performance</h3>
+      <ul>
+        <li>AIMS Facility Maintenance &amp; Minor Works<span>2022 — Current</span></li>
+        <li>Douglas Water Treatment Plant Maintenance &amp; Expansion<span>2024 — Current</span></li>
+        <li>Glencore Drainage Rectification Works<span>2024</span></li>
+      </ul>
+    </div>
+  </div>
+  <span class="footer-brand left">Vision Constructions QLD</span>
+  <span class="page-num right">07</span>
+</section>
+
+<!-- =============== PAGE 8 — MARINE & WATER =============== -->
+<section class="page cap-page">
+  <div class="cap-head">
+    <div class="cap-head-left">
+      <div class="cap-head-num">06 · Capability stream two</div>
+      <h2>Marine &amp; Water Infrastructure</h2>
+    </div>
+    <div class="cap-head-right">Marine environments · Since 2022</div>
+  </div>
+  <div class="cap-photo-strip">
+    <div><img src="images/marine-pontoon-crane.jpg" alt=""></div>
+    <div><img src="images/jetty-guide-pile-welding.jpg" alt=""></div>
+    <div><img src="images/aims-pontoon-service.jpg" alt=""></div>
+  </div>
+  <div class="cap-body">
+    <div>
+      <h3>Core capabilities</h3>
+      <div class="cap-caps">
+        <div class="cap-cap"><strong>Concrete Structure Rectification</strong><p>Structural repairs of defective and deteriorating concrete elements over water, including demolition, reinstatement and replacement of corroded reinforcement.</p></div>
+        <div class="cap-cap"><strong>Fixed &amp; Floating Structures</strong><p>Repairs and replacement of damaged steel and aluminium components on marine assets such as gangways and pontoons.</p></div>
+        <div class="cap-cap"><strong>Structural Pile Repairs</strong><p>Remediation of deteriorated piles through concrete encasement, jacket systems and protective coatings. Installation of proprietary marine pile protection products.</p></div>
+        <div class="cap-cap"><strong>Abrasive Blasting &amp; Coatings</strong><p>Surface preparation and coating of steel and concrete marine structures. Application of high-performance protective systems.</p></div>
+        <div class="cap-cap"><strong>Fender Repairs &amp; Upgrades</strong><p>Replacement and installation of marine fender systems — timber, rubber and composite — to protect structures from vessel impact.</p></div>
+        <div class="cap-cap"><strong>Cathodic Protection Repairs</strong><p>Maintenance of sacrificial anodes and impressed current cathodic protection systems to mitigate corrosion in marine environments.</p></div>
+      </div>
+    </div>
+    <div class="cap-perf">
+      <h3>Past performance</h3>
+      <ul>
+        <li>AIMS Facility Maintenance &amp; Minor Works<span>2022 — Current</span></li>
+        <li>Paluma Intake Structure Repairs<span>2025</span></li>
+        <li>Glencore Port Facility Concrete Repairs<span>2024</span></li>
+        <li>AIMS Pontoon Guide Pile Repairs<span>2023</span></li>
+      </ul>
+    </div>
+  </div>
+  <span class="footer-brand left">Vision Constructions QLD</span>
+  <span class="page-num right">08</span>
+</section>
+
+<!-- =============== PAGE 9 — STRUCTURAL, MECHANICAL & PIPING =============== -->
+<section class="page cap-page">
+  <div class="cap-head">
+    <div class="cap-head-left">
+      <div class="cap-head-num">07 · Capability stream three</div>
+      <h2>Structural, Mechanical &amp; Piping</h2>
+    </div>
+    <div class="cap-head-right">AS/NZS 1554 · In-house fabrication</div>
+  </div>
+  <div class="cap-photo-strip">
+    <div><img src="images/welder-fabrication.jpg" alt=""></div>
+    <div><img src="images/smp-welder-steel-mods.jpg" alt=""></div>
+    <div><img src="images/stp-scaffold-pipework.jpg" alt=""></div>
+  </div>
+  <div class="cap-body">
+    <div>
+      <h3>Core capabilities</h3>
+      <div class="cap-caps">
+        <div class="cap-cap"><strong>In-house Fabrication</strong><p>Workshop fabrication of structural steel, mechanical components and piping systems in accordance with AS/NZS 1554 — precision cutting, forming, welding, trial fitting and coatings.</p></div>
+        <div class="cap-cap"><strong>Structural Site Welding</strong><p>Onsite welding, installation and modification of structural and mechanical components. Supported by fully equipped mobile welding units, rigging &amp; lifting, and certified personnel for confined space and working at heights.</p></div>
+        <div class="cap-cap"><strong>Structural Steel Rectification</strong><p>Repair and strengthening of damaged or corroded steel — section replacement, weld restoration and application of corrosion protection systems to Australian standards.</p></div>
+        <div class="cap-cap"><strong>Welding Processes</strong><p>MIG, TIG and Stick welding across flat, horizontal, vertical, overhead and combination positions. Materials include steel, stainless steel and aluminium.</p></div>
+      </div>
+    </div>
+    <div class="cap-perf">
+      <h3>Past performance</h3>
+      <ul>
+        <li>AIMS Facility Maintenance &amp; Minor Works<span>2022 — Current</span></li>
+        <li>Douglas Water Treatment Plant Maintenance &amp; Expansion<span>2024 — Current</span></li>
+        <li>Glencore Drainage Rectification Works<span>2024</span></li>
+        <li>Ayr Filtration Plant<span>2025 — 2026</span></li>
+      </ul>
+    </div>
+  </div>
+  <span class="footer-brand left">Vision Constructions QLD</span>
+  <span class="page-num right">09</span>
+</section>
+
+<!-- =============== PAGE 10 — CIVIL CONSTRUCTION =============== -->
+<section class="page cap-page">
+  <div class="cap-head">
+    <div class="cap-head-left">
+      <div class="cap-head-num">08 · Capability stream four</div>
+      <h2>Civil Construction</h2>
+    </div>
+    <div class="cap-head-right">Public &amp; private networks · NQ</div>
+  </div>
+  <div class="cap-photo-strip">
+    <div><img src="images/culvert-laroona.jpg" alt=""></div>
+    <div><img src="images/project-excavators.jpg" alt=""></div>
+    <div><img src="images/sludge-lagoon-excavation.jpg" alt=""></div>
+  </div>
+  <div class="cap-body">
+    <div>
+      <h3>Core capabilities</h3>
+      <div class="cap-caps">
+        <div class="cap-cap"><strong>Bulk Earthworks</strong><p>Cut-to-fill, large embankment construction, structural fill, trench excavation and ground surface treatments.</p></div>
+        <div class="cap-cap"><strong>Road Construction &amp; Repairs</strong><p>New road construction, pavement rehabilitation, shoulder reinstatement and bituminous sprayed sealing.</p></div>
+        <div class="cap-cap"><strong>Rural Road Grading &amp; Access</strong><p>Maintenance grading, re-sheeting and formation of rural access tracks on unsealed road networks — remote and regional.</p></div>
+        <div class="cap-cap"><strong>Drainage Structures</strong><p>Installation and repair of culverts, causeways, headwalls and surface water controls.</p></div>
+        <div class="cap-cap"><strong>Concrete Structures</strong><p>Water retaining structures, retaining walls, concrete drainage systems including RCP, RCBC and SLBC.</p></div>
+        <div class="cap-cap"><strong>Clearing &amp; Grubbing</strong><p>Vegetation clearing, root removal and site preparation aligned with environmental and cultural heritage requirements.</p></div>
+      </div>
+    </div>
+    <div class="cap-perf">
+      <h3>Past performance</h3>
+      <ul>
+        <li>AIMS Stormwater Pit Rectifications<span>2025</span></li>
+        <li>AIMS Road Emergent Works<span>2022 — 2026</span></li>
+        <li>Douglas WTP Sludge Pond Upgrade<span>2024</span></li>
+        <li>Ayr Filtration Plant<span>2025 — 2026</span></li>
+        <li>Townsville City Council Rural Road Re-grading<span>2018</span></li>
+        <li>APLNG Miles QLD Well Heads<span>2015</span></li>
+        <li>Aurukun to Batavia<span>2012</span></li>
+        <li>Peninsula Development Road Restoration<span>2009</span></li>
+      </ul>
+    </div>
+  </div>
+  <span class="footer-brand left">Vision Constructions QLD</span>
+  <span class="page-num right">10</span>
+</section>
+
+<!-- =============== PAGE 11 — COMPANY DETAILS =============== -->
+<section class="page company">
+  <div class="company-head">
+    <span class="eyebrow">09 · Company details</span>
+    <h2>Where to <em>find us.</em></h2>
+  </div>
+  <dl class="company-grid">
+    <div class="company-row"><dt>Company</dt><dd>Vision Constructions QLD Pty Ltd</dd></div>
+    <div class="company-row"><dt>Incorporated</dt><dd>2009</dd></div>
+    <div class="company-row"><dt>ACN</dt><dd>136 270 347</dd></div>
+    <div class="company-row"><dt>ABN</dt><dd>54 136 270 347</dd></div>
+    <div class="company-row"><dt>Phone</dt><dd>(07) 4755 4839</dd></div>
+    <div class="company-row"><dt>Email</dt><dd>admin@visionconstructions.com.au</dd></div>
+    <div class="company-row"><dt>Address</dt><dd>95 Crocodile Cres, Mount St John QLD 4818</dd></div>
+    <div class="company-row"><dt>Website</dt><dd>visionconstructions.com.au</dd></div>
+  </dl>
+  <div class="company-photo">
+    <img src="images/fleet-stormy.jpg" alt="">
+    <span class="company-photo-label">Built on values</span>
+  </div>
+  <span class="page-num right" style="color:var(--stone-dark)">11</span>
+</section>
+
+</body>
+</html>
