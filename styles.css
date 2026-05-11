@@ -1596,3 +1596,23 @@ body.v2 .reveal.visible { opacity: 1; transform: translateY(0); }
 }
 .v2-detail-meta strong { color: var(--h-ink); font-weight: 600; margin-right: 6px; }
 @media (max-width: 900px) { .v2-detail-list { grid-template-columns: 1fr; } }
+
+/* ── Downloads grid (policies + certificates) ── */
+.v2-downloads-subhead { font-size: 0.82rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--h-ink-soft); margin: 0 0 20px; }
+.v2-downloads-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+@media (max-width: 900px) { .v2-downloads-grid { grid-template-columns: 1fr; gap: 16px; } }
+
+.v2-download-card {
+  display: flex; align-items: center; gap: 18px;
+  background: var(--h-card); border: 1px solid var(--h-border); border-radius: 14px;
+  padding: 22px 24px; color: var(--h-ink);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.v2-download-card:hover { transform: translateY(-3px); border-color: var(--h-ink); box-shadow: 0 14px 32px rgba(26,24,23,0.08); }
+.v2-download-icon { flex: 0 0 44px; height: 44px; border-radius: 10px; background: rgba(76,184,72,0.12); color: var(--h-green); display: inline-flex; align-items: center; justify-content: center; }
+.v2-download-icon svg { width: 22px; height: 22px; }
+.v2-download-body { flex: 1; min-width: 0; }
+.v2-download-body h4 { font-size: 1rem; font-weight: 700; margin: 0 0 4px; color: var(--h-ink); letter-spacing: -0.005em; }
+.v2-download-meta { font-size: 0.78rem; color: var(--h-ink-soft); margin: 0; }
+.v2-download-cta { font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em; color: var(--h-green); white-space: nowrap; flex-shrink: 0; }
+.v2-download-card:hover .v2-download-cta { color: var(--h-ink); }
