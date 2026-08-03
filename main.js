@@ -73,26 +73,63 @@ const countObserver = new IntersectionObserver((entries) => {
 counters.forEach(el => countObserver.observe(el));
 
 // ── Form handler (contact + apply) — posts to Formspree via AJAX ──
-function wireForm(form, sendingLabel, successLabel, errorLabel) {
+const FALLBACK_EMAIL = 'admin@visionconstructions.com.au';
+
+function wireForm(form, sendingLabel, successLabel, errorLabel, successMessage) {
   if (!form) return;
   const btn = form.querySelector('.v2-form-submit, .form-submit');
   if (!btn) return;
   const originalLabel = btn.textContent;
+
+  // Status line lives under the button so we can say more than a button label allows.
+  const status = document.createElement('p');
+  status.className = 'v2-form-status';
+  status.setAttribute('role', 'status');
+  status.hidden = true;
+  btn.insertAdjacentElement('afterend', status);
+
+  const showStatus = (html, kind) => {
+    status.innerHTML = html;
+    status.className = 'v2-form-status v2-form-status--' + kind;
+    status.hidden = false;
+  };
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    status.hidden = true;
     btn.textContent = sendingLabel;
     btn.disabled = true;
+    // Only a reason the server actually gave us is worth showing — a raw
+    // network error ("Failed to fetch") means nothing to the person reading it.
+    let serverReason = '';
     try {
       const res = await fetch(form.action, {
         method: 'POST',
         body: new FormData(form),
         headers: { 'Accept': 'application/json' }
       });
-      if (!res.ok) throw new Error('bad response');
+      if (!res.ok) {
+        // Formspree returns a JSON body explaining the rejection — surface it
+        // rather than telling people to retry something that can't succeed.
+        try {
+          const data = await res.json();
+          const detail = data?.errors?.map(x => x.message).join(' ') || data?.error || '';
+          serverReason = detail.trim().replace(/[.\s]+$/, '');
+        } catch (_) { /* non-JSON response, fall through to the generic message */ }
+        throw new Error('submission rejected');
+      }
       btn.textContent = successLabel;
+      showStatus(successMessage, 'ok');
       form.reset();
     } catch (err) {
       btn.textContent = errorLabel;
+      const reason = serverReason ? ' (' + serverReason + ')' : '';
+      showStatus(
+        'Sorry — we couldn\'t send that' + reason + '. Please email us directly at ' +
+        '<a href="mailto:' + FALLBACK_EMAIL + '">' + FALLBACK_EMAIL + '</a> ' +
+        'or call <a href="tel:+61747554839">(07) 4755 4839</a>.',
+        'error'
+      );
     }
     setTimeout(() => {
       btn.textContent = originalLabel;
@@ -101,8 +138,17 @@ function wireForm(form, sendingLabel, successLabel, errorLabel) {
   });
 }
 
-wireForm(document.getElementById('contactForm'), 'Sending…', 'Message Sent!', 'Failed — try again');
-wireForm(document.getElementById('applyForm'), 'Submitting…', 'Application Received!', 'Failed — try again');
+wireForm(
+  document.getElementById('contactForm'),
+  'Sending…', 'Message Sent!', 'Failed to send',
+  'Thanks — your message is on its way. We\'ll be in touch shortly.'
+);
+wireForm(
+  document.getElementById('applyForm'),
+  'Submitting…', 'Application Received!', 'Failed to send',
+  'Thanks — your application has been received. Don\'t forget to email your resume to ' +
+  '<a href="mailto:' + FALLBACK_EMAIL + '">' + FALLBACK_EMAIL + '</a>.'
+);
 
 // ── Capability Statement — manual prev/next page turn ──
 const capFlip = document.querySelector('.cap-flip');

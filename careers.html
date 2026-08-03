@@ -7,7 +7,7 @@
   <meta name="description" content="Join the Vision Constructions team in North Queensland. Current openings for civil, structural, marine, and trades positions.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260428c">
+  <link rel="stylesheet" href="styles.css?v=20260803a">
 </head>
 <body class="v2">
 
@@ -147,10 +147,11 @@
       <div class="v2-heading reveal">
         <span class="v2-kicker">Apply Now</span>
         <h2 class="v2-h2">Submit your <em>application.</em></h2>
-        <p class="v2-lead">Fill out the form and attach your resume. We review all applications and will be in touch when a suitable role comes up.</p>
+        <p class="v2-lead">Fill out the form below and email your resume through to us. We review all applications and will be in touch when a suitable role comes up.</p>
       </div>
-      <form class="v2-form reveal" id="applyForm" action="https://formspree.io/f/mbdqkanq" method="POST" enctype="multipart/form-data">
+      <form class="v2-form reveal" id="applyForm" action="https://formspree.io/f/mbdqkanq" method="POST">
         <input type="hidden" name="_subject" value="New careers application — visionconstructions.com.au">
+        <input type="text" name="_gotcha" class="v2-form-gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
         <h3>Application</h3>
         <div class="v2-form-row">
           <div class="v2-form-group">
@@ -180,10 +181,11 @@
           <label for="experience">Experience &amp; Qualifications</label>
           <textarea id="experience" name="experience" placeholder="Briefly describe your experience, tickets, and what you're looking for…" rows="5"></textarea>
         </div>
-        <div class="v2-form-group">
-          <label for="resume">Attach Resume</label>
-          <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx">
-        </div>
+        <p class="v2-form-note">
+          <strong>Sending your resume:</strong> email it through to
+          <a href="mailto:admin@visionconstructions.com.au?subject=Resume%20—%20job%20application">admin@visionconstructions.com.au</a>
+          and we'll match it up with your application.
+        </p>
         <button type="submit" class="v2-form-submit">Submit Application →</button>
       </form>
     </div>
@@ -243,6 +245,6 @@
   </div>
 </footer>
 
-<script src="main.js?v=20260428c"></script>
+<script src="main.js?v=20260803a"></script>
 </body>
 </html>

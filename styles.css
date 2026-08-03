@@ -1340,6 +1340,23 @@ body.v2 .nav.scrolled { background: rgba(17, 17, 17, 0.98); box-shadow: 0 1px 0 
 .v2-form-group input::placeholder, .v2-form-group textarea::placeholder { color: var(--h-ink-soft); }
 .v2-form-group input:focus, .v2-form-group textarea:focus { outline: none; border-color: var(--h-green); }
 .v2-form-group textarea { resize: vertical; min-height: 120px; }
+.v2-form-note {
+  margin: 0 0 20px; padding: 14px 18px;
+  background: var(--h-bg); border: 1px solid var(--h-border); border-radius: 10px;
+  font-size: 0.9rem; line-height: 1.6; color: var(--h-ink-muted);
+  overflow-wrap: break-word; /* the email address is long enough to overflow on phones */
+}
+.v2-form-note strong { color: var(--h-ink); font-weight: 600; }
+.v2-form-note a { color: var(--h-green); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+.v2-form-status {
+  margin: 14px 0 0; padding: 12px 16px; border-radius: 10px;
+  font-size: 0.9rem; line-height: 1.55; overflow-wrap: break-word;
+}
+.v2-form-status a { font-weight: 600; text-decoration: underline; text-underline-offset: 2px; color: inherit; }
+.v2-form-status--ok { background: rgba(76, 184, 72, 0.14); border: 1px solid rgba(76, 184, 72, 0.45); color: #1F5C1D; }
+.v2-form-status--error { background: rgba(178, 42, 34, 0.10); border: 1px solid rgba(178, 42, 34, 0.35); color: #8C221B; }
+/* Spam honeypot — hidden from people, filled in by bots */
+.v2-form-gotcha { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .v2-form-submit {
   width: 100%; padding: 16px; background: var(--h-ink); color: #fff;
   border: none; border-radius: 999px; font-size: 0.98rem; font-weight: 600; letter-spacing: 0.01em;
