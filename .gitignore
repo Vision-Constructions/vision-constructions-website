@@ -28,3 +28,6 @@ yarn-error.log*
 # Build output (not currently used)
 dist/
 build/
+
+# Superseded capability statements — kept locally, not deployed
+_source/capability-statement-archive/
