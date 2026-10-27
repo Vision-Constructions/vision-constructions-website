@@ -22,7 +22,7 @@ Vision Website/
 │
 ├── index.html              Homepage
 ├── about.html              About / team / timeline
-├── capabilities.html       4 service areas (Support, Marine, SMP, Civil)
+├── capabilities.html       5 service areas (Support, Marine, SMP, Civil, Mining)
 ├── projects.html           Real project case studies
 ├── careers.html            Job listings + application form
 ├── contact.html            Contact details, map, enquiry form

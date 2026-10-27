@@ -1202,7 +1202,7 @@ body.v2 .nav.scrolled { background: rgba(17, 17, 17, 0.98); box-shadow: 0 1px 0 
 
 /* ── CAPABILITIES ──────────────────────── */
 .v2-caps { background: var(--h-bg); padding: 140px 0; }
-.v2-caps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.v2-caps-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
 .v2-cap {
   display: flex; flex-direction: column;
   background: #ffffff; border: 1px solid var(--h-border);
@@ -1222,6 +1222,7 @@ body.v2 .nav.scrolled { background: rgba(17, 17, 17, 0.98); box-shadow: 0 1px 0 
   transition: gap 0.25s ease, color 0.25s ease;
 }
 .v2-cap-link:hover { color: var(--h-green); gap: 14px; }
+@media (max-width: 1240px) { .v2-caps-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; } }
 @media (max-width: 1024px) { .v2-caps-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .v2-caps-grid { grid-template-columns: 1fr; } .v2-caps { padding: 96px 0; } }
 
